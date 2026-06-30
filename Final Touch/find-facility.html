@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Find Healthcare Facility • HealthBridge</title>
+<!-- IMAGE REFERENCE: Find Healthcare Facility.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#1E5BD6;--brand-soft:#6B9BE8;--ink:#0b1220;--muted:#6b7280;--ring:#e5e7eb}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;color:var(--ink);background:#fff}
+a{text-decoration:none;color:inherit}
+.hb-header{border-bottom:1px solid #eee}
+.hb-header .inner{max-width:1200px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hb-logo{display:flex;align-items:center;gap:10px}
+.hb-logo .mark{width:36px;height:36px;border:2px solid #0e9f6e;border-radius:8px;display:grid;place-items:center;color:#0e9f6e}
+.hb-logo b{color:#0e9f6e;font-weight:800;font-size:20px}.hb-logo b span{color:var(--brand)}
+.hb-logo small{display:block;color:var(--brand);font-size:10px;font-weight:600}
+.hb-nav{display:flex;gap:36px;font-weight:600}
+.banner{background:#6B9BE8;color:#fff;padding:30px 0}
+.banner .inner{max-width:1200px;margin:0 auto;padding:0 24px}
+.banner h1{font-weight:800;font-size:32px;margin:0}
+.banner p{margin:6px 0 18px}
+.search-row{display:flex;gap:14px;flex-wrap:wrap}
+.search-row .f{flex:1;background:#fff;border-radius:999px;padding:10px 18px;display:flex;align-items:center;gap:10px;color:#6b7280;min-width:220px}
+.search-row .f input{border:0;outline:0;flex:1}
+.btn-search{background:var(--brand);color:#fff;border:0;padding:12px 36px;border-radius:999px;font-weight:600}
+.container-x{max-width:1200px;margin:0 auto;padding:0 24px}
+h2.center{text-align:center;font-weight:800;margin:36px 0 20px;font-size:24px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cat{border:1px solid var(--brand);border-radius:14px;padding:30px 18px;text-align:center}
+.cat i{font-size:48px;color:var(--brand)}
+.cat .nm{font-weight:800;margin-top:14px}
+.viewall{text-align:right;margin:14px 0 30px}
+.viewall a{color:var(--brand);font-weight:700;text-decoration:underline}
+.feat-h{background:var(--brand-soft);color:#fff;display:inline-block;padding:8px 24px;font-weight:800;font-size:20px;border-radius:0 8px 8px 0;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card-f{border:1px solid var(--ring);border-radius:14px;overflow:hidden}
+.card-f .img{height:200px;background-size:cover;background-position:center}
+.card-f .body{padding:14px 16px}
+.card-f .name{font-weight:700;display:flex;align-items:center;gap:6px}
+.card-f .name i{color:var(--brand);font-size:9px}
+.card-f .meta{color:#6b7280;font-size:13px;margin:2px 0}
+.card-f .rate{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px;margin-top:4px}
+.card-f .rate i{color:#f59e0b}
+.card-f .loc{color:#6b7280;font-size:12px;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;padding:3px 10px;font-size:11px;color:#374151}
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0;margin-top:40px}
+.hb-footer .grid{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;margin-bottom:14px}.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:900px){.cats{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.hb-footer .grid{grid-template-columns:1fr 1fr}.hb-nav{gap:18px;font-size:14px}}
+</style><script type='text/javascript' nonce='h+AHoLvJQjDabS9wtxc5gg==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/Zq2nKpRfZeZf52kAsHy_1sg9WgHYj2FEA2_3eJ8JfHLoo-ZBhMOajyuvUbAguP3uu2CCu_N8Qg2CWvXVrfhIjiFhlch7lwJorIQd3mNkAC6jMRJWwvK89WhoeaVICFXsxHwV9svAucwslECEqjcN8XLCIGjp7JIykjDL3mrsIk4nsOb3zMIc2_0SgQgYu07GzksiTnYJVMt64MyvDYkUlzpTA5MXZY_2CtQ3f4NnAhW6vRrLpCYrUNNpRmEw-lkuxyMUmjL52cA8Z2uevuf1YxUWa3aj_Pwm5sAQHWubc4en3wc1qrk7RelFLAIPc6YFrI9GGWt_qhJmflmBdGBFGUfQrarqdbju9avzu27PHJOIeUmlUBPSGL32tFxlmJbwo7czVbni-8_167BeuEFRNLRrU-BszCluGMBpdmv4MKImVWmIWFaF0TBJfJrE5o-VF7H0k6m-XnO7-45ONB7TeLGEOlC4c2t743YY2wLjXLo4iD_HferDOgEh1U0YMbjAoXYTXYH0kB0JtFyPV4cTtpmtelhKnqOIjglFrq4O4Z7-0ZasCTGflmeTJ1JU_lpMH7VeIujxf18PoSHWYDZPXDx7j8uOh5RZy6p_NLtrOT6rSSllhg8GLTxkKt78rMJugqU5Xo0h9T9GzXMQtJPxG7dEony55SaJQS1hhUbtcaKDluC9yv9yuOoEPWnHT_PIpDgLrNQWm1LhMx2kWXn_KvJ7cqb4HVyexCGR15jyWfIQLj_9OmwLahmX600_9cn0PgeQ6q-K98pHt1BE4GU-4gKE4NuS6nS7OtbyFb_lY-JjzZFIGGjPGXixADdfP1KLGWiv40ilzBH-HbRbt25voeRW-xVCRF6Y3pgZ4Agv0-KCvb-6P6MKzCAvIPIFCXFcad_6aM2gy2FdTd52TNkQwqYTIY9Jf5sweVTGiBcUPC-5E6BuK0VuBtGo8j3s008MZwszVxOvGJ0pg21VXMxO-a-1OcAxEWmfIp__CXuPzhJtf1kF2c-nJ0fvSuQIhfEx963OnXYLXP6JFROVk9k3tjHWXuU9iNKSA6k2jkLmHeODESXyvVwad_4J8EvxiK4k6Qzy4mmW5Yz-EtzikGvJ5UlbFmUGFp0hIljoJrsX0OvjTG8iVdVzmylKDl3Mucy9JxyePG8gHx1a34gieswl36EWD-iULrQ-TyGFO7rQbdXdk779EFjLfa1_F_MMPB3hy0xdmdbZH0a2Z-jlHP1XN7odIrXMj5WtWJTAPUc3wSqPo-awyOzRwFeBmY-XGhu_WvqnNcKXALQiARSJj7_X-Kml6I4uafMBkmWDmEh_vA8Lwt6_V36t0hPw4hromTKhatAaX5td3TDZ6W_484QLlzH8Z-0JM5cAsYwlpUONzsCCVSTQhTayIunEX05pT29u9VMIyNtAq5s0WZwvLfeZnhpkaDLBjZXLrFDQESuLYVQb-xdyXpDWAbZiVomAxb4Wd2VISC7OPyWKIhQ_5TQpjzv01i67hINqawcUFvJtC3ftSFzfMb6nh09n60_c06lPd9qFNP_ZGpJXclYVA56TuQ-DsPkAJOiPVyiK2zG16mE4ibwrkOW2967NXoQKMSl3uJQ93g-IANtlvJjdtSKR03ubJ0o9J9JDPenezmdHJMqDEIsmLIBT4mw8iqCloM_1cCpFm_BLMUS9MqGHQTKlU0mdte7DOerTEAzhqwotYEgzf1JvAR2GdfaDJUNNU9qGMtJJijQ6vQKapSV_tBCagI7LQ7F9kyzh2gR6wpTQad0AoFStX1Q0M_YM5fgJ3YPgIicV1rGgjjeKhH_JZrfajfECCagjFRK7ogdR9HMYUfnzdD2oCZfvWajw_3Q8VwCnZvXypfIufDU3d_tSP5Y3js-Q2SkgEWbUHym0GcgTY_jgf5p9ywhF_qw2eqbIuy66hIAKslG5W4pY67wL-i4bSvtgUi1jsokpb0QgdJzrKDyauCWNdQIxDKWR_6gWI0aOIEhRpw5YjQUg4qBGNBCj43DjEFwgFWPX8zY2mQ8e2aFx'></script></head><body>
+<header class="hb-header"><div class="inner">
+<a href="index.html" class="hb-logo"><img src="./img/Logo 1.png" alt="logo" width="38px" height="38px">
+<span><b>Health<span>Bridge</span></b><small>One ID. Better Care Everywhere</small></span></a>
+<nav class="hb-nav"><a href="#">Support</a><a href="#"><i class="fa-solid fa-globe"></i> EN ▾</a><a href="#">About</a></nav>
+</div></header>
+
+<div class="banner"><div class="inner">
+<h1>Find Healthcare Facilities</h1>
+<p>Find quality healthcare near you</p>
+<div class="search-row">
+<div class="f"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Search name, service or specialty"/><i class="fa-solid fa-caret-down" style="color:var(--brand)"></i></div>
+<div class="f"><i class="fa-solid fa-location-dot"></i><input placeholder="Location"/></div>
+<button class="btn-search">Search</button>
+</div>
+</div></div>
+
+<div class="container-x">
+<h2 class="center">Popular Categories</h2>
+<div class="cats">
+<div class="cat"><i class="fa-solid fa-stethoscope"></i><div class="nm">General<br>Consultation</div></div>
+<div class="cat"><i class="fa-solid fa-staff-snake"></i><div class="nm">Emergency<br>Care</div></div>
+<div class="cat"><i class="fa-solid fa-person-pregnant"></i><div class="nm">Maternity</div></div>
+<div class="cat"><i class="fa-solid fa-baby"></i><div class="nm">Pediatrics</div></div>
+</div>
+<div class="viewall"><a href="#">View All Categories</a></div>
+
+<div class="feat-h">Featured Facilities</div>
+<div class="cards">
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard1.png" width="100%" height="100%"></div><div class="body"><div class="name">Lagos Health Clinic <i class="fa-solid fa-circle"></i></div><div class="meta">Clinic • Primary Care</div><div class="rate"><i class="fa-solid fa-star"></i> 4.8 <span style="color:#6b7280;font-weight:500">(156 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Lagos, Nigeria • 5.1 km</div><div class="tags"><span>General Consultation</span><span>Vaccination</span><span>Health Screening</span><span>+1 more</span></div></div></a>
+
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard2.png" width="100%" height="100%"></div><div class="body"><div class="name">Toun Memorial Hospital <i class="fa-solid fa-circle"></i></div><div class="meta">Medical Centre • Advance Care</div><div class="rate"><i class="fa-solid fa-star"></i> 4.8 <span style="color:#6b7280;font-weight:500">(134 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Ibadan, Nigeria • 5.1 km</div><div class="tags"><span>General Consultation</span><span>Vaccination</span><span>Health Screening</span><span>+1 more</span></div></div></a>
+
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard3.png" width="100%" height="100%"></div><div class="body"><div class="name">Homocare Gracious Hospital <i class="fa-solid fa-circle"></i></div><div class="meta">Hospital • General</div><div class="rate"><i class="fa-solid fa-star"></i> 4.1 <span style="color:#6b7280;font-weight:500">(185 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Lagos, Nigeria • 5.1 km</div><div class="tags"><span>Emergency</span><span>Surgery</span><span>Maternity</span><span>+3 more</span></div></div></a>
+
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard4.png" width="100%" height="100%"></div><div class="body"><div class="name">Onward Specialist Hospital <i class="fa-solid fa-circle"></i></div><div class="meta">Medical Centre • Specialized Care</div><div class="rate"><i class="fa-solid fa-star"></i> 3.5 <span style="color:#6b7280;font-weight:500">(89 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Osogbo, Nigeria • 5.1 km</div><div class="tags"><span>Cardiology</span><span>Neurology</span><span>Orthopedics</span><span>+1 more</span></div></div></a>
+
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard5.png" width="100%" height="100%"></div><div class="body"><div class="name">Ibadan Family Clinic <i class="fa-solid fa-circle"></i></div><div class="meta">Clinic • Primary Care</div><div class="rate"><i class="fa-solid fa-star"></i> 4.8 <span style="color:#6b7280;font-weight:500">(156 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Lagos, Nigeria • 5.1 km</div><div class="tags"><span>Antenatal Care</span><span>Vaccination</span><span>Pediatrics</span><span>+1 more</span></div></div></a>
+
+<a class="card-f" href="facility-details.html"><div class="img"><img src="./img/FacilityCard6.png" width="100%" height="100%"></div><div class="body"><div class="name">Suleja Dental Clinic <i class="fa-solid fa-circle"></i></div><div class="meta">Dental Clinic • Dentistry</div><div class="rate"><i class="fa-solid fa-star"></i> 4.2 <span style="color:#6b7280;font-weight:500">(50 reviews)</span></div><div class="loc"><i class="fa-solid fa-location-dot"></i> Lagos, Nigeria • 2.1 km</div><div class="tags"><span>General Dentistry</span><span>Orthodontics</span><span>Cosmetic Dentistry</span><span>+1 more</span></div></div></a>
+</div>
+</div>
+<footer class="hb-footer"><div class="grid">
+<div class="brand"><div class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+</body></html>

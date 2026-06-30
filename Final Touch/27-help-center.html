@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Help Center · HealthBridge</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+:root{--brand:#2563eb;--teal:#14b8a6;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--footerbg:#6f9fec}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;color:var(--ink)}a{text-decoration:none;color:inherit}
+.topnav{display:flex;align-items:center;gap:24px;padding:14px 28px;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:10px;align-items:flex-start}.brand .logo{width:42px;height:42px;border-radius:10px;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:22px}
+.brand h1{font-size:22px;margin:0;color:#3b82f6}.brand h1 span{color:var(--teal)}.brand small{display:block;color:#3b82f6;font-size:11px;font-weight:600}
+.search-top{flex:1;max-width:380px;position:relative}.search-top input{width:100%;padding:11px 60px 11px 42px;border:1px solid var(--line);border-radius:10px;background:#f8fafc}.search-top i{position:absolute;left:14px;top:12px}
+.search-top .kbd{position:absolute;right:10px;top:8px}.kbd kbd{background:#f1f5f9;border-radius:4px;padding:2px 6px;font-size:11px}
+.bell{position:relative;font-size:22px}.bell .dot{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px}
+.user{display:flex;align-items:center;gap:10px}.user img{width:40px;height:40px;border-radius:50%}
+.app{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 80px)}
+.sidebar{border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:6px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;color:#334155}.nav-item:hover{background:#f1f5f9}
+.help{margin-top:auto;background:#eff6ff;border-radius:14px;padding:14px}.help button{width:100%;background:#fff;border:1px solid var(--brand);color:var(--brand);padding:8px;border-radius:8px;font-weight:600}
+.content{padding:24px 28px;background:#fff}
+.h-title{font-weight:800;font-size:26px;margin-bottom:14px}
+.hero{background:#7aa6f5;border-radius:18px;padding:34px;color:#fff;margin-bottom:24px}
+.hero h2{font-size:32px;font-weight:800}.hero p{opacity:.95;margin-bottom:18px}
+.hero .sb{position:relative}.hero .sb input{width:100%;padding:14px 18px;border-radius:12px;border:0}
+.hero .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.hero .chips span{background:var(--brand);padding:10px 22px;border-radius:10px;font-weight:600;cursor:pointer}
+.section{border:1px solid #dbeafe;border-radius:18px;padding:24px;margin-bottom:24px}
+.section h3{font-weight:800;margin-bottom:18px}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cat{border:1.5px solid;border-radius:14px;padding:20px;display:flex;gap:14px}
+.cat .ic{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex-shrink:0}
+.cat .t{font-weight:800;font-size:18px}.cat .d{color:var(--muted);font-size:13px;margin:4px 0 10px}.cat .n{color:var(--muted);font-size:12px}
+.art{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #f1f5f9;align-items:center}
+.art .ic{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.art .t{font-weight:700;font-size:15px}.art .d{color:var(--muted);font-size:13px}
+.art .tag{padding:6px 12px;border-radius:8px;font-weight:600;font-size:12px}
+.browse{display:block;text-align:center;padding:14px;border:1px solid var(--line);border-radius:10px;margin-top:14px;font-weight:600}
+.footer{background:var(--footerbg);color:#fff;padding:40px 28px}
+.footer .row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:20px;max-width:1400px;margin:auto}
+.footer h6{font-weight:800;margin-bottom:14px;font-size:18px}.footer a,.footer p{display:block;color:#fff;margin-bottom:10px;font-size:15px}
+.footer .socials{display:flex;gap:10px;margin-top:14px;font-size:22px}
+.flogo{width:48px;height:48px;border-radius:10px;background:#fff;display:grid;place-items:center;color:var(--teal);font-size:24px;margin-bottom:14px}
+</style></head><body>
+<div class="topnav">
+  <div class="brand"><div class="logo"><i class="bi bi-heart-pulse"></i></div><div><h1>Health<span>Bridge</span></h1><small>One ID. Better Care Everywhere</small></div></div>
+  <div class="search-top"><i class="bi bi-search"></i><input placeholder="Search anything..."><div class="kbd"><kbd>⌘</kbd> <kbd>K</kbd></div></div>
+  <span class="fw-bold">Support</span><span class="fw-bold"><i class="bi bi-globe text-primary"></i> EN <i class="bi bi-chevron-down"></i></span>
+  <div class="ms-auto d-flex align-items-center gap-3"><div class="bell"><i class="bi bi-bell"></i><span class="dot">3</span></div><div class="user"><img src="https://i.pravatar.cc/80?img=20"><div><b class="text-primary">Olivia Johnson</b><div class="small text-muted">Patient</div></div></div></div>
+</div>
+<div class="app">
+  <aside class="sidebar">
+    <a class="nav-item"><i class="bi bi-grid"></i> Dashboard</a>
+    <a class="nav-item"><i class="bi bi-calendar2"></i> Appointments</a>
+    <a class="nav-item"><i class="bi bi-chat-dots"></i> Messages</a>
+    <a class="nav-item"><i class="bi bi-file-earmark-text"></i> Records</a>
+    <a class="nav-item"><i class="bi bi-capsule"></i> Prescriptions</a>
+    <a class="nav-item"><i class="bi bi-eyedropper"></i> Lab Results</a>
+    <a class="nav-item"><i class="bi bi-credit-card"></i> Billing</a>
+    <a class="nav-item"><i class="bi bi-gear"></i> Settings</a>
+    <div class="help"><b><i class="bi bi-question-circle"></i> Need Help?</b><p class="small text-muted my-2">Visit our Help Center or contact support.</p><button>Get Support</button></div>
+    <div class="px-2 text-muted small"><i class="bi bi-sun"></i> Light <i class="bi bi-chevron-down"></i></div>
+    <small class="text-muted px-2">© 2025 HealthBridge Inc.</small>
+  </aside>
+  <div class="content">
+    <h2 class="h-title">Help Center</h2>
+    <div class="hero">
+      <h2>Hi, how can we help you?</h2>
+      <p>Find answers, guides, and support for all your Healthbridge needs</p>
+      <div class="sb"><input placeholder="Search for articles, topics, or keywords....."></div>
+      <div class="chips"><span>Popular Search</span><span>Book Appointment</span><span>Lab Results</span><span>Prescriptions</span><span>Account Settings</span></div>
+    </div>
+    <div class="section">
+      <h3>Browse by Category</h3>
+      <div class="cat-grid">
+        <div class="cat" style="border-color:#14b8a6"><div class="ic" style="background:#ccfbf1;color:#0d9488"><i class="bi bi-rocket-takeoff"></i></div><div><div class="t">Getting started</div><div class="d">New to HealthBridge? Start here.</div><div class="n">13 articles</div></div></div>
+        <div class="cat" style="border-color:#facc15"><div class="ic" style="background:#fef9c3;color:#ca8a04"><i class="bi bi-calendar2-check"></i></div><div><div class="t">Appointment</div><div class="d">Book recorded and manage your health</div><div class="n">15 articles</div></div></div>
+        <div class="cat" style="border-color:#3b82f6"><div class="ic" style="background:#dbeafe;color:#2563eb"><i class="bi bi-capsule"></i></div><div><div class="t">Prescription</div><div class="d">Manage your medication and prescriptions</div><div class="n">18 articles</div></div></div>
+        <div class="cat" style="border-color:#ef4444"><div class="ic" style="background:#ede9fe;color:#7c3aed"><i class="bi bi-credit-card-2-front"></i></div><div><div class="t">Billing & Payment</div><div class="d">Payments and help insurance</div><div class="n">20 articles</div></div></div>
+        <div class="cat" style="border-color:#22c55e"><div class="ic" style="background:#dcfce7;color:#16a34a"><i class="bi bi-gear"></i></div><div><div class="t">Settings</div><div class="d">Manage your profile, security & permit</div><div class="n">21 articles</div></div></div>
+        <div class="cat" style="border-color:#f59e0b"><div class="ic" style="background:#fef3c7;color:#d97706"><i class="bi bi-key"></i></div><div><div class="t">Privacy & Security</div><div class="d">Data privacy, permissions and security settings</div><div class="n">23 articles</div></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h3>Popular Articles <span class="text-primary float-end fw-bold" style="font-size:14px">View All Articles</span></h3>
+      <div class="art"><div class="ic" style="background:#fef9c3;color:#ca8a04"><i class="bi bi-calendar2-check"></i></div><div class="flex-grow-1"><div class="t">How to book an appointment with a doctor</div><div class="d">A step by step guide to book, reschedule, or cancel an appointment</div></div><span class="tag" style="background:#dcfce7;color:#16a34a">Appointment</span></div>
+      <div class="art"><div class="ic" style="background:#ccfbf1;color:#0d9488"><i class="bi bi-eyedropper"></i></div><div class="flex-grow-1"><div class="t">How to access and download lab results</div><div class="d">Learn how to view, download and share your lab test reports</div></div><span class="tag" style="background:#fee2e2;color:#dc2626">Lab & test result</span></div>
+      <div class="art"><div class="ic" style="background:#ede9fe;color:#7c3aed"><i class="bi bi-credit-card"></i></div><div class="flex-grow-1"><div class="t">How to upload and manage medical record</div><div class="d">Upload your Statement and keep your health record organized</div></div><span class="tag" style="background:#ede9fe;color:#7c3aed">Medical record</span></div>
+      <div class="art"><div class="ic" style="background:#dbeafe;color:#2563eb"><i class="bi bi-wallet2"></i></div><div class="flex-grow-1"><div class="t">Understanding your billing and invoices</div><div class="d">View invoices, download receipts and manage payment method</div></div><span class="tag" style="background:#fef3c7;color:#d97706">Billing & Payment</span></div>
+      <div class="art" style="border:0"><div class="ic" style="background:#fef3c7;color:#d97706"><i class="bi bi-key"></i></div><div class="flex-grow-1"><div class="t">How to reset your account password</div><div class="d">Reset or change your password to keep your account secure</div></div><span class="tag" style="background:#dbeafe;color:#2563eb">settings & Acc</span></div>
+      <a class="browse">Browse all Articles</a>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="row">
+    <div><div class="flogo"><i class="bi bi-heart-pulse"></i></div><p>One health identify, easier access to healthcare across nigeria</p><div class="socials"><i class="bi bi-instagram"></i><i class="bi bi-linkedin"></i><i class="bi bi-youtube"></i><i class="bi bi-twitter-x"></i></div></div>
+    <div><h6>Home</h6><a>Register Patient</a><a>Register Facility</a><a>Book Appointment</a><a>Find Hospital</a><a>Access Profile</a><a>Admin Dashboard</a><a>Notification</a></div>
+    <div><h6>Find</h6><a>First Aid</a><a>Emergency</a><a>Diseases List</a><a>Health Tips & Wellness</a></div>
+    <div><h6>Resources</h6><a>Support</a><a>Profile Settings</a><a>Doctors</a></div>
+  </div>
+</footer>
+</body></html>

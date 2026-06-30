@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HealthBridge — One ID. Better Care Everywhere</title>
+<!-- IMAGE REFERENCE: LANDING PAGE.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#1E5BD6;--brand-2:#2563eb;--ink:#0b1220;--muted:#6b7280;--green:#0e9f6e;--footer:#6B9BE8;--ring:#e5e7eb;--soft:#eef4ff}
+*{box-sizing:border-box}html,body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;margin:0}
+a{text-decoration:none}
+.container-x{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Header */
+.hb-header{border-bottom:1px solid #eee;background:#fff;position:sticky;top:0;z-index:50}
+.hb-header .inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.hb-logo{display:flex;align-items:center;gap:10px}
+.hb-logo .mark{width:36px;height:36px;border:2px solid #0e9f6e;border-radius:8px;display:grid;place-items:center;color:#0e9f6e}
+.hb-logo .txt{line-height:1}
+.hb-logo .txt b{color:#0e9f6e;font-weight:800;font-size:20px}
+.hb-logo .txt b span{color:var(--brand)}
+.hb-logo .txt small{display:block;color:var(--brand);font-size:10px;font-weight:600;margin-top:2px}
+.hb-nav{display:flex;align-items:center;gap:40px;font-weight:600}
+.hb-nav a{color:#111}
+.hb-nav .lang{display:flex;align-items:center;gap:6px}
+/* Hero */
+.hero{padding:48px 0 24px}
+.hero h1{font-size:44px;line-height:1.1;font-weight:800;color:var(--brand);letter-spacing:-.5px}
+.hero p.lead{color:#111;font-size:17px;max-width:520px;margin-top:18px}
+.hero .btn-reg{margin-top:18px;border:1px solid var(--brand);color:var(--brand);background:#fff;padding:10px 18px;border-radius:8px;font-weight:600}
+.hero .visual{position:relative;height:420px;display:grid;place-items:center}
+.hero .visual .circle{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(closest-side,#cfe0ff,#a9c6ff 70%, #7aa9ff 100%)}
+.hero .visual img{position:relative;max-height:420px;border-radius:50%}
+/* Search bar */
+.search-card{border:1px solid var(--brand);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:16px;margin-top:14px}
+.search-card .lbl b{color:var(--brand);font-weight:800;font-size:18px}
+.search-card .lbl small{display:block;color:#333;font-size:13px}
+.search-card .field{flex:1;display:flex;align-items:center;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;gap:10px}
+.search-card .field input{border:0;outline:0;flex:1;font-size:15px}
+.search-card .field .near{color:var(--brand);font-weight:600;font-size:13px}
+.search-card .search-btn{background:var(--brand);color:#fff;border:0;padding:12px 28px;border-radius:10px;font-weight:600}
+
+/* Tips banner */
+.tips{margin:36px 0;background:linear-gradient(90deg,#5B8DEF,#6B9BE8);border-radius:18px;color:#fff;display:grid;grid-template-columns:300px 1fr;overflow:hidden;min-height:260px}
+.tips .img{background:#9cb9f0 url('./img/catoon.png') center/cover}
+.tips .body{padding:36px}
+.tips h2{font-weight:800;font-size:32px;line-height:1.1}
+.tips p{margin-top:14px;font-size:15px;max-width:520px}
+.tips .learn{display:inline-block;margin-top:18px;color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:2px}
+/* Feature icons */
+.features{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin:30px 0;text-align:center}
+.features .f .ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto;font-size:22px}
+.features .f.f1 .ic{background:#dbe7ff;color:var(--brand)}
+.features .f.f2 .ic{background:#d6f1ea;color:#0e9f6e}
+.features .f.f3 .ic{background:#fde0d6;color:#e76f51}
+.features .f.f4 .ic{background:#d6f1ea;color:#0e9f6e}
+.features .f.f5 .ic{background:#fde0d6;color:#e76f51}
+.features .f .nm{margin-top:10px;color:var(--brand);font-weight:700;font-size:15px}
+/* CTA */
+.cta{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:30px 0 50px}
+.cta .l{display:flex;gap:16px;align-items:center}
+.cta .ic{width:48px;height:48px;border-radius:10px;background:#e9efff;color:var(--brand);display:grid;place-items:center;font-size:22px}
+.cta h3{color:var(--brand);font-weight:800;margin:0;font-size:22px}
+.cta p{margin:4px 0 0;color:#111;font-size:14px}
+.cta .btn-c{background:var(--brand);color:#fff;border:0;padding:16px 32px;border-radius:10px;font-weight:600}
+/* Footer */
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0}
+.hb-footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;font-size:18px;margin-bottom:14px}
+.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px;opacity:.95}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .brand p{font-size:14px;max-width:260px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}
+.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:900px){
+.hero{padding:24px 0}.hero .row>div{flex:0 0 100%}.hero h1{font-size:32px}
+.hospitals{grid-template-columns:repeat(2,1fr)}
+.tips{grid-template-columns:1fr}.tips .img{height:180px}
+.features{grid-template-columns:repeat(2,1fr)}
+.cta{flex-direction:column;align-items:flex-start}
+.hb-footer .grid{grid-template-columns:1fr 1fr}
+.search-card{flex-direction:column;align-items:stretch}
+.hb-nav{gap:18px;font-size:14px}
+}
+
+.circle{
+    position: relative;
+    width: 420px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-38%);
+    z-index: -80px;}
+</style>
+<script type='text/javascript' nonce='sBwZ+xdLLBqJSuLYR+P8zg==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/VUICDg75ZevW1whTdIe-eLBd5z6ftf9YzszSM-t4TkdhyER1iHxFqx_2gGNZiOnXiZiaupxrkJvRqbtMG8AVf82UvjAdq92FZJ49oBGy4n4OVoo1RxsvtetHLd9MoByP7amQacctYTZybLGvOoIcTVqwN-9VFZ1YPZ987Vud2xBE2gq3ucmc2Sxaizts-FNSRxFJpVBIADegYpAaqCxf9yp6tAuRabL3YLj4oklrADlJtX_Ao-leFOrT8dp4Wkd2V2zv4NcSn7PsnU7fLji58BlAu1aS0gC7WQf_-Keda9pyU7py8yPHOuSdz1ixf70bR5bApjJ3lfkARiBdHhrB8hp9Dd-NUnO7ckkuxrmiSmS0H4b7Go8ogQ_LidnpfYCtUp1p8BkUgbiPq2NZVa08L8EmU73uJpW2Ee2hNTZOGiMiABIbG_NiktBguxeEi8amfkaBYolOA3ypnUraqVfFEq3-buYQfoQpNQ3L4PdBt_3CHCIIP2dPaTA_nmQssbsJKoOtZjrM-2jO3TUAmrxF7KFkXQye9WmrBYCJx-X9qzC2Z5ofBuuU4nIUWYkrQRFq5fF6P_pm_WOSuGrPG8gjIS82ZrxXp2YUuTI1FOxqSjqHzMq9_WOx76CTIBlIxlxtug1ltEGvk9gJmff6yvW0SmWEV0ad4GW52zMxVB49u2n29hfWqQjE0qWzfED4QiyXHxHTuYMnen2c_SC2UiwWREUtvYp5on1bRbyEKOLFnRHxyuRlMMSqMG4rWLs7OyCmxuSwJWS8RqJve_PSxEwm718BThKF5pLz4SIj0aZBZnsgUeruZ3LHgf9gAG6WyhJpjjMXDOox3kgdvB-avW8vd1XUieZMkXkm6PCBJfNyVOCo7peJDDaEr2rrrElUflyOEldlQ18pWmxjUq6eAJpm0geQ71FwUU_oRyzVfxQhTHh9YlIc7SGF3y_k2DfU1UflwDu_YPVmnVifPKGwslfFiUXGDBjZgTHvZC97hDcPURkMRt7iw56O6nlIHd-2cBAWQBF7sI8xIKLrwcJxL-sjdbqZByJ1tYQo7jVPNMxm6Zj1VWyu2x4xEZyAn2T4FIxd9rdk4M6c8MLq9YmexxpNLDuaJm2EuaZvIhvhROkOg7hmlqB4e7msktTc8T9X1hX-iZQpXwcEGfB-UG2Nok_cnXMYEjZA_KT-WDCrVYOonC9VBHu2UKZfELZ4Md0K7p9PNtzXK7ZnZYbC0w84E83bc24y-19s1QhfAhCkZvVQCRFS502Dhvb-pvdWTtcATs7wG9hvcIdhoHvokgurs-OX8uQuUpEdbRsXlxfEH4vWoYQloZKsjxe1_8RurDuU1RPScsbBtE5rLWW_OqcqrH0f5CwsT_b3wuzIyS1-LWeDXOwL-MpZh3hvBVe99ms40JeDRFHPC26cgeJ3vAucc6ep80G9ZoBQiQXd_It71X44jdTzWGIQez40Tr_wA5NQ755iCKeb-Q_n3nHBqWgEPwqEGPSKE1mYKi1CvXCKFq7LNuqTvN8skKBZoHA3VIT70-5anP4UarOcfGycECAgCbokZEwjS_IM8vdMBb3l2GObQCCQ3fxe4cdSpLYvXRmqUqSciQ1duc1q8x5nX6jrsSjalBKWNQf-NHP5VDnV81kCAnqs_YnknqF1b4i-oWf5_ugZ8lxIFCS3jwTu-6yxviKhsNH9eaLm4h5qEypzSougGN2_aaNXymnVFlLdSrhvGcf83yq_Ivmrss679-Tj2Dvmqlw95RtPeIYdIddTLlGmySqayD5ZQ5rq22h9t14S2tIdJaUKH3T6OEgoEIP4WmFXvAHfV9Q7v39L78u31hFXIO9NdZV6OX-B3Idua9j2-hFjuUgD057B6MpGdPPbg2kJuakGBTo_Hsm_wF8uaVxWGXIMm65KHNP7jDF8_X1AHEYnGFO3awcME307Du9IRC-gSzSw5yHl2CoZASybsfufzvCSEOfBwHyALSEQOLubpJqsg1EBqejriih2HBA8yXGFZCYHs8D_BSIl-Q'></script></head>
+<body>
+
+<header class="hb-header"><div class="container-x inner">
+<a href="index.html" class="hb-logo"><img src="./img/Logo 1.png" alt="logo" width="38px" height="38px">
+<span class="txt"><b>Health<span>Bridge</span></b><small>One ID. Better Care Everywhere</small></span></a>
+<nav class="hb-nav">
+<a href="#">Support</a>
+<a href="#" class="lang"><i class="fa-solid fa-globe"></i> EN <i class="fa-solid fa-caret-down"></i></a>
+<a href="#">About</a>
+</nav>
+</div></header>
+
+<section class="hero container-x">
+<div class="row align-items-center g-4">
+<div class="col-lg-6">
+<h1>One Health Identify, Easier Access To Healthcare Across Nigeria.</h1>
+<p class="lead">Book appointments, access your health record, manage your health passport and connect with participating hospital</p>
+<a href="facility-registration.html" class="btn-reg"><i class="fa-solid fa-hospital"></i> Register for hospital</a>
+</div>
+<div class="col-lg-6">
+<div class="visual"><div class="circle"><img alt="doctors" src="./img/Group 2doc.png"></div>
+</div>
+</div>
+</div>
+
+<div class="search-card">
+<div class="lbl"><b>Find a Hospital, Clinic or Specialist</b><small>Search by hospital name, specialty or location</small></div>
+<div class="field"><input placeholder="Search for hospital"/><span class="near"><i class="fa-solid fa-location-dot"></i> near me</span></div>
+<button class="search-btn" onclick="location.href=&#39;find-facility.html&#39;">Search</button>
+</div>
+
+ <!-- Hospital cards -->
+    <div class="row g-4 mt-2">
+      <!-- duplicate 4 hospitals -->
+      <div class="col-6 col-md-3 fade-up"><div class="hb-card overflow-hidden"><div style="height:140px;background:linear-gradient"></div><div class="p-3"><div class="fw-bold small"><a href="./find-facility.html"><img src="./img/onward.png" alt="onward" width="100%"></a> Onward Specialist Hospital</div><div class="text-muted small">Agunbelewo, Osogbo, Osun State</div></div></div></div>
+      <div class="col-6 col-md-3 fade-up delay-1"><div class="hb-card overflow-hidden"><div style="height:140px;background:linear-gradient"></div><div class="p-3"><div class="fw-bold small"><a href="./find-facility.html"><img src="./img/st hospital.png" alt="st. Nicholas" width="100%"></a> St. Nicholas Hospital</div><div class="text-muted small">Lagos Island, Lagos State</div></div></div></div>
+      <div class="col-6 col-md-3 fade-up delay-2"><div class="hb-card overflow-hidden"><div style="height:140px;background:linear-gradient"></div><div class="p-3"><div class="fw-bold small"><a href="./find-facility.html"><img src="./img/oke bale.png" alt="oke baale" width="100%"></a> Homocare Gracious Hospital</div><div class="text-muted small">Osogbo, Oke-bale Osun State</div></div></div></div>
+      <div class="col-6 col-md-3 fade-up delay-3"><div class="hb-card overflow-hidden"><div style="height:140px;background:linear-gradient"></div><div class="p-3"><div class="fw-bold small"><a href="./find-facility.html"><img src="./img/toun egbeda.png" alt="100%" width="100%"></a>  Toun Memorial Hospital</div><div class="text-muted small">Egbeda, Ibadan, Oyo State</div></div></div></div>
+    </div>
+
+<div class="tips">
+<div class="img"></div>
+<div class="body"><h2>Health Tips, First Aid &amp;<br>Disease Guide</h2>
+<p>Evidence based health information, emergency guides, wellness tips - for Nigerian patients and families.</p>
+<a class="learn" href="#">Learn More</a></div>
+</div>
+
+<div class="features">
+<div class="f f1"><div class="ic"><i class="fa-regular fa-calendar-plus"></i></div><div class="nm"><a href="book-appointment.html"> Smart Appointment</a><br>Booking</div></div>
+<div class="f f2"><div class="ic"><i class="fa-solid fa-video"></i></div><div class="nm"><a href="teleconsultation.html"> Telemedicine</a></div></div>
+<div class="f f3"><div class="ic"><i class="fa-solid fa-folder-open"></i></div><div class="nm">Medical Records</div></div>
+<div class="f f4"><div class="ic"><i class="fa-solid fa-bell"></i></div><div class="nm">Emergency Support</div></div>
+<div class="f f5"><div class="ic"><i class="fa-regular fa-credit-card"></i></div><div class="nm">Secure Payment</div></div>
+</div>
+
+<div class="cta">
+<div class="l"><div class="ic"><i class="fa-regular fa-calendar-plus"></i></div>
+<div><h3>Start your health journey today</h3><p>Join thousand of patient who trust HealthBridge for their health.</p></div></div>
+<button class="btn-c" onclick="location.href=&#39;signup.html&#39;">Create free account</button>
+</div>
+</section>
+
+<footer class="hb-footer"><div class="container-x grid">
+<div class="brand"><div class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+
+<script>document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{if(a.getAttribute('href').length>1){e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})}}));</script>
+</body></html>

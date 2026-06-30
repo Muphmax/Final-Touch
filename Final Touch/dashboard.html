@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Patient Dashboard • HealthBridge</title>
+<!-- IMAGE REFERENCE: PATIENT DASHBOARD.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#1E5BD6;--ink:#0b1220;--muted:#6b7280;--ring:#e5e7eb}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;color:var(--ink);background:#fff}
+a{text-decoration:none;color:inherit}
+.hb-header{border-bottom:1px solid #eee}
+.hb-header .inner{max-width:1400px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.hb-logo{display:flex;align-items:center;gap:10px}
+.hb-logo .mark{width:36px;height:36px;border:2px solid #0e9f6e;border-radius:8px;display:grid;place-items:center;color:#0e9f6e}
+.hb-logo b{color:#0e9f6e;font-weight:800;font-size:20px}.hb-logo b span{color:var(--brand)}
+.hb-logo small{display:block;color:var(--brand);font-size:10px;font-weight:600}
+.hb-nav{display:flex;gap:36px;font-weight:600}
+.layout{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:240px 1fr;gap:24px;border-right:1px solid #eee}
+.side{padding:24px 0;border-right:1px solid #eee;min-height:calc(100vh - 73px)}
+.side a{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:8px;font-weight:600;color:#111;margin-bottom:4px}
+.side a.active{background:#eef4ff;color:var(--brand)}
+.side a .badge{margin-left:auto;background:var(--brand);color:#fff;border-radius:999px;font-size:11px;padding:2px 8px}
+.main{padding:24px 0}
+.welcome{display:flex;justify-content:space-between;align-items:flex-start}
+.welcome h1{font-size:26px;font-weight:800;margin:0}
+.welcome p{color:var(--muted);margin:6px 0}
+.welcome .date{text-align:right;font-size:13px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+.stat{border:1px solid var(--ring);border-radius:14px;padding:18px;min-height:200px}
+.stat .ic{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-size:18px;margin-bottom:14px}
+.stat.a .ic{background:#e7efff;color:var(--brand)}
+.stat.b .ic{background:#dff5ec;color:#0e9f6e}
+.stat.c .ic{background:#efe3ff;color:#7c3aed}
+.stat .t{color:var(--muted);font-size:14px}
+.stat .v{font-size:32px;font-weight:800;margin-top:6px}
+.stat .nx{font-size:13px;color:var(--muted);margin-top:6px}
+.stat .lnk{margin-top:14px;font-weight:600;font-size:13px;color:var(--brand)}
+.stat.b .lnk{color:#0e9f6e}.stat.c .lnk{color:#7c3aed}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.box{border:1px solid var(--ring);border-radius:14px;padding:18px}
+.box .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.box .head b{font-weight:700;font-size:15px}
+.box .head .va{color:var(--brand);font-weight:600;font-size:13px}
+.appt{display:grid;grid-template-columns:40px 1fr auto auto auto;gap:10px;align-items:center;background:#f9fafb;border-radius:10px;padding:10px;margin-bottom:8px;font-size:13px}
+.av{width:38px;height:38px;border-radius:50%;background:#cfe0ff;color:var(--brand);display:grid;place-items:center;font-weight:700}
+.tag{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600}
+.tag.g{background:#dcfce7;color:#166534}.tag.o{background:#fff1e6;color:#c2410c;border:1px solid #fdba74}
+.book{width:100%;background:var(--brand);color:#fff;border:0;padding:12px;border-radius:10px;font-weight:600;margin-top:6px}
+.cal{display:block;text-align:center;color:#111;margin-top:10px;font-weight:500;font-size:13px}
+.med{display:flex;align-items:center;gap:12px;background:#f9fafb;border-radius:10px;padding:12px;margin-bottom:10px}
+.med .ic{width:38px;height:38px;border-radius:8px;display:grid;place-items:center}
+.med.m .ic{background:#fff4cc;color:#d97706}.med.e .ic{background:#e7e2ff;color:#7c3aed}
+.med .body{flex:1;font-size:13px}.med .body b{display:block}
+.insights .row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.dot{width:8px;height:8px;border-radius:50%;margin-top:7px}
+.dot.g{background:#16a34a}.dot.o{background:#f97316}
+.act .row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.act .ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:#eef4ff;color:var(--brand)}
+.act .body{flex:1;font-size:13px}.act .ago{font-size:12px;color:var(--muted)}
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0;margin-top:40px}
+.hb-footer .grid{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;margin-bottom:14px}.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:none}.stats,.cols{grid-template-columns:1fr}.hb-footer .grid{grid-template-columns:1fr 1fr}}
+</style><script type='text/javascript' nonce='EYRl5RAhKQJgsXoSlco7bA==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/1NYIhjwUy_DG1hu3mxw4TJ9cGEbGN9GLiK6vk87tsgP9zaELdOgOiIGWxcJofcma4f3rg_c103EcRirZZiHRx6TeInhinPxQQdSSK-6ezgFQXi96tuu0H9N1JnokSfKvgvjGqPi6p7rRmLnho7VC4_TpUEFK3YXztb-2yCW1bq1ZNJiqLcTQX8U_qVqPSdqHe04G8JkCKVRHaMgqpFx1laxbC48yfUmkuBpbXCdKeGypLcXDIuUoISCPUOytU2-6qS_3pcsXH5_5wlup9dLJF7ClQCtSv5y9z8cjO1QNYo1tum9Sw5Z44DR9xK0WkIKcuQ88jKeKQVb3wWD-cmyP6H0XGDont6smrAE0Esm7fac5qHHR3cvKjwpKUAxQiYjyJ4jXtf_K9dfXZebMVgkhCHqEO9SLpqldr2-RDWtHoIcdXfozUWypBb5xAjMA23QtyzxWAJsvNoAKa3VEKbQYra1s6zwLYT2CdXjxeueXzwQpx8lwzPNvUyzKG640IyCpJZAJyRLq_rWOW6GsNOorNRzJuS0BlJrpqgfTghwEyS5v00G_YsrinGokTd-1Zurnuw0YsWxZ6BbT0C0enMluroYDXu9IWdrP5k3PTdHpGrGr05XRjjwp8Gp2kY6N9vtGqBcW2auifj1xefmKvrYGhpYtnmC2Hmm0eoJ4_tWJE249hiYz4gZgxXRMbYQ3lzjea23fIn98WEUmf7NGPUsHpWIvv3LPGD3kZxuzJ-LzKapyE8v2E15IVV8Pv3jAv1W55vTQPBHiIUoqQOBI-CPSeeVt-FzNgRd0PzuFo0Bb9zsfdiGO68loDNnjK0mMiPlEvVg0reuVhYwWhSfRnoFsgahcsbVBwv85o-x0kdVLsJpYZjFrP0f8yObF7JLdvuRgbqMUhHBhhoCPZ2yyB0AxJaEZNhGK9FGWGdr20jXy2AwrSeNyeH__8TZ3KeRqAWsmOlovVDY_7WTpBY_RgQF_AMtiX4r8vOYHtWUG18vP03BQybm_4miJuc-iQocFEKHU-j7A_1B4Cleo5qy_iYouV6b-b757eXh4aa8JIXPN9U614L_mF--vZWF8L0_IRwHNiSKb10xjSRglqwiKndPUeLsdd0NNKrPILbbTU1RawV22SjWrZIKktLju2ks4IzmiKomt7XGkloc8wdXxk074H2wXvZNxaD0GurZCTw6DAXAiePTwAPmpCo4FzScCk9aEBmg5pVS_CTMZ6FVp2MMa3NqhLOQgWmWJQg5AAOU61bJJbKUHyXplWn_pzNau-DX9yqxx8R0rK1ocDC2meU_kCX5tuheQ3lTcIqb7A6ci7u17to1IHeTmGqAxkOM0sgDiPw_JbOFDBKW3tqBhp4TtW1hkn1vM3YaU83mavUUIF7Mx2T_8JAmiza4inpfrUd5z_4VY2ghfpUBEIRHpVzxrf8cVQ_yWhMdICu0EcCiE3c35W-Hb--E0yOlZeBhKIAmjasG2FHgd87h69nJdC-c8CocrG86KzMs25Z0ck1XTy9TD2pclBNUQQojSoK4RwdAKrMnTb8ul5DYG9I2riXAbYvqqB1Iue5KwSLm4jS5-RE2UnJsyCWvv6dhiXFe93ZJ4m6x97Z8cm0yn_jMbU4T8RRgsXf3LCX9ijsgaejK1TeuNzwNAKVwYEJ_1iZMvvvDtdGL8hLLMPySRYXA6bEST4RyTvu4f1opmmy1Jt2AsBPqAxBGn3aESd0ODVG0vv4joBcWM5M6jkamRhVxDSCpqKXfX7u1TZfQqJg3esBaINt_NIn6ZYYY6VCB60e5pcclfBvoPbaV7vZHAZXLKktMFNJnxNgDtyEdnTYHuORKxWIo-bz6wG50C0HRuLN-DQF-L9rY51GhaDLScWPiT_nfn_0LrQuswM4SXy6Crt5s3RycLM_2rOmNy3CCq7-N6vbQW6ehxov4IRF-egvR2YTTzKYKq2bVwr3dxyxKLdkucwcK4aSsa-ZOlRX_REBMM3CIFCuI5gkM3CcLNSbP7gPiDwIfYdVKmTFHGfxnnk78'></script></head><body>
+<header class="hb-header"><div class="inner">
+<a href="index.html" class="hb-logo"><span class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></span>
+<span><b>Health<span>Bridge</span></b><small>One ID. Better Care Everywhere</small></span></a>
+<nav class="hb-nav"><a href="#">Support</a><a href="#"><i class="fa-solid fa-globe"></i> EN ▾</a><a href="#">About</a></nav>
+</div></header>
+
+<div class="layout">
+<aside class="side">
+<a href="#" class="active"><i class="fa-solid fa-house"></i> Dashboard</a>
+<a href="#"><i class="fa-regular fa-calendar"></i> My Appointments</a>
+<a href="doctor-profile.html"><i class="fa-solid fa-user-doctor"></i> Find Doctors</a>
+<a href="#"><i class="fa-regular fa-file-lines"></i> Medical Records</a>
+<a href="#"><i class="fa-solid fa-link"></i> Teleconsultation</a>
+<a href="#"><i class="fa-regular fa-comment"></i> Messages/Chats <span class="badge">2</span></a>
+<a href="#"><i class="fa-regular fa-credit-card"></i> Billing &amp; Payments</a>
+<a href="#"><i class="fa-solid fa-wave-square"></i> Health Insights</a>
+<a href="#"><i class="fa-regular fa-clipboard"></i> Care Plans</a>
+<a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+</aside>
+
+<main class="main">
+<div class="welcome">
+<div><h1>Good morning, Olivia Johnson ! 👋</h1><p>Here's your health summary for today.</p></div>
+<div class="date">Tuesday,<br><b>9 June 2026</b></div>
+</div>
+
+<div class="stats">
+<div class="stat a"><div class="ic"><i class="fa-regular fa-calendar"></i></div><div class="t">Upcoming Appointments</div><div class="v">2</div><div class="nx">Next: Dr. Ibrahim Bello<br>Today • 10:00 AM</div><div class="lnk">View Details →</div></div>
+<div class="stat b"><div class="ic"><i class="fa-solid fa-pills"></i></div><div class="t">Active Prescriptions</div><div class="v">4</div><div class="nx">Medications</div><div class="lnk">View Prescription →</div></div>
+<div class="stat c"><div class="ic"><i class="fa-regular fa-file-lines"></i></div><div class="t">Medical Records</div><div class="v">12</div><div class="nx">Records Available</div><div class="lnk">Open Records →</div></div>
+</div>
+
+<div class="cols">
+<div class="box">
+<div class="head"><b><i class="fa-regular fa-calendar" style="color:var(--brand)"></i> Upcoming Appointments</b><a class="va" href="#">View All</a></div>
+<div class="appt"><div class="av">IB</div><div><b>Dr. Ibrahim Bello</b><br><span style="color:#6b7280;font-size:12px">Cardiologist</span></div><div>Today<br>9 Jun 2026</div><div><i class="fa-regular fa-clock"></i> 10:00 AM</div><span class="tag g">Confirmed</span></div>
+<div class="appt"><div class="av">SJ</div><div><b>Dr. Sarah Johnson</b><br><span style="color:#6b7280;font-size:12px">Dermatologist</span></div><div>15 Jun 2026<br>Thursday</div><div><i class="fa-regular fa-moon"></i> 02:30 PM</div><span class="tag o">Pending</span></div>
+<button class="book"><i class="fa-regular fa-calendar-plus"></i> Book New Appointment</button>
+<a class="cal" href="#"><i class="fa-regular fa-calendar"></i> View Calendar</a>
+</div>
+
+<div class="box">
+<div class="head"><b>Today's Medications</b><a class="va" href="#">View All</a></div>
+<div class="med m"><div class="ic"><i class="fa-solid fa-sun"></i></div><div class="body"><b>MORNING — 8:00 AM</b>Paracetamol 500mg<br><span style="color:#6b7280">1 Tablet after breakfast</span></div><span class="tag g">Taken ✓</span></div>
+<div class="med e"><div class="ic"><i class="fa-solid fa-moon"></i></div><div class="body"><b>EVENING — 8:00 PM</b>Vitamin D 1000 IU<br><span style="color:#6b7280">1 Capsule after dinner</span></div><span class="tag o">Upcoming ⏱</span></div>
+</div>
+
+<div class="box insights">
+<div class="head"><b><i class="fa-solid fa-wave-square" style="color:var(--brand)"></i> Health Insights</b></div>
+<div class="row"><span class="dot g"></span><div><b>Blood pressure is stable</b><br><span style="color:#6b7280;font-size:13px">BP has been consistent this week.</span></div></div>
+<div class="row"><span class="dot g"></span><div><b>No missed medications</b><br><span style="color:#6b7280;font-size:13px">Great job! You're on track.</span></div></div>
+<div class="row"><span class="dot o"></span><div><b>Annual checkup due in 10 days</b><br><span style="color:#6b7280;font-size:13px">Book your appointment to stay healthy.</span></div></div>
+<a href="#" style="color:var(--brand);font-weight:600;font-size:13px">View Full Report ›</a>
+</div>
+
+<div class="box act">
+<div class="head"><b>Recent Medical Activity</b><a class="va" href="#">View All</a></div>
+<div class="row"><div class="ic"><i class="fa-regular fa-calendar"></i></div><div class="body"><b>Consultation Completed</b><br><span style="color:#6b7280">Dr. Ibrahim Bello • Cardiology</span></div><div class="ago">2 days ago</div></div>
+<div class="row"><div class="ic" style="background:#dff5ec;color:#0e9f6e"><i class="fa-regular fa-file-lines"></i></div><div class="body"><b>Lab Result Uploaded</b><br><span style="color:#6b7280">Blood Test Report</span></div><div class="ago">5 days ago</div></div>
+<div class="row"><div class="ic" style="background:#efe3ff;color:#7c3aed"><i class="fa-solid fa-pills"></i></div><div class="body"><b>Prescription Updated</b><br><span style="color:#6b7280">Paracetamol, Vitamin D</span></div><div class="ago">1 week ago</div></div>
+<div class="row"><div class="ic" style="background:#fff1e6;color:#c2410c"><i class="fa-regular fa-calendar"></i></div><div class="body"><b>Appointment Scheduled</b><br><span style="color:#6b7280">Dr. Sarah Johnson • Dermatology</span></div><div class="ago">1 week ago</div></div>
+</div>
+</div>
+</main>
+</div>
+
+<footer class="hb-footer"><div class="grid">
+<div class="brand"><div class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+</body></html>

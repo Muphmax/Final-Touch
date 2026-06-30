@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sign Up • HealthBridge</title>
+<!-- IMAGE REFERENCE: SIGN UP.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#1E5BD6;--ink:#0b1220}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;color:var(--ink);background:#fff}
+a{text-decoration:none}
+.hb-header{border-bottom:1px solid #eee}
+.hb-header .inner{max-width:1200px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.hb-logo{display:flex;align-items:center;gap:10px}
+.hb-logo .mark{width:36px;height:36px;border:2px solid #0e9f6e;border-radius:8px;display:grid;place-items:center;color:#0e9f6e}
+.hb-logo b{color:#0e9f6e;font-weight:800;font-size:20px}.hb-logo b span{color:var(--brand)}
+.hb-logo small{display:block;color:var(--brand);font-size:10px;font-weight:600}
+.hb-nav{display:flex;gap:36px;font-weight:600}.hb-nav a{color:#111}
+.wrap{max-width:1200px;margin:0 auto;padding:60px 24px}
+.card-su{max-width:580px;margin:0 auto;border:2px solid var(--brand);border-radius:14px;padding:36px 50px;position:relative}
+.card-su .pre{color:#9ca3af;font-size:14px;margin-bottom:4px}
+.card-su h1{font-weight:800;font-size:42px;margin:0}
+.card-su .sub{margin:6px 0 26px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+.fld{margin-bottom:18px}
+.fld input,.fld select{width:100%;border:1px solid #111;border-radius:999px;padding:12px 18px;font-size:14px;outline:none}
+.phone{display:flex;gap:10px}
+.phone select{width:90px;border:1px solid #111;border-radius:8px;padding:10px;font-weight:600}
+.phone input{flex:1}
+.roles{display:flex;gap:14px;margin:10px 0 20px;flex-wrap:wrap}
+.role{flex:1;min-width:140px;border:2px solid #111;border-radius:999px;padding:14px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-weight:700;color:#111}
+.role.active{border-color:var(--brand);color:var(--brand)}
+.role i{font-size:18px}
+.input-eye{position:relative}
+.input-eye i{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:#9ca3af}
+.terms{display:flex;align-items:flex-start;gap:8px;font-size:14px;margin:6px 0 18px}
+.terms a{color:var(--brand);text-decoration:underline}
+.btn-pri{width:100%;background:var(--brand);color:#fff;border:0;border-radius:999px;padding:14px;font-weight:600;font-size:16px}
+.alr{text-align:center;font-weight:700;margin-top:18px}
+.alr a{color:var(--brand);text-decoration:underline}
+.legal{max-width:580px;margin:10px auto 0;display:flex;justify-content:flex-end;gap:14px;color:#6b7280;font-size:13px}
+.legal span{color:#cbd5e1}
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0;margin-top:60px}
+.hb-footer .grid{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;margin-bottom:14px}
+.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}
+.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:600px){.card-su{padding:24px}.hb-footer .grid{grid-template-columns:1fr 1fr}.hb-nav{gap:16px;font-size:14px}}
+</style><script type='text/javascript' nonce='azV9p6zRtC2hCG4EZfxzXA==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/wzbgnSiHoBcx0em0ziRZigwrI_bKZ5MlLwRGb2H6kn0o8sSUHa-hRwpQ0TIx6Qqd1nAHIyPWCK6kF8TXquzr3Gh2gLfrNSgGk0dSM2eLZXiI53kg_o2qLWuOqNnmvT22QuPNphZu2a5Fb2u4yXEmIVfo1aPP5TjR3hzKLO0wOP3a0HXRsDcEcLS2Nco_Vz8GzHwQ2_dQ4ldju62SApGm5rUmkbXMdhZ84TmWlJdxh9OC077LCr-HxE349FgDJLZNz3S3dkTFTq4rz8nYSuxsTCQ8mEQobTguPT95t6woRZx24hIyOQuVr33OvQT5j3hjD30kU9WeONlBr0uJflECdfSMrKAfSL9_ipwpNCpBuJ41UNAO9w1pm9Vj5FViodUl0MvpNTysdjrD2pqTQQuqh9SH1FcUnGS-7NfcIU8E8on9htMNmT5HOd02YRPTQhvwUlfi_WalCSud2urRWkndJqAHhgRaCCsSkbExY-w7QBNClPNo1wAvMM7LO8nSddcbnVOUEklfaYyEGRobk0zUv6Xx_XgDo6BNk8ba8UmRTBDMkcPqEwBV7HjWihSw_mZEnQZymBaCm3d-RY7SQtGsSX9blsh7FKhBJhQ28UAwansLKx1MVheBzVbo5ZaN-XNwVLIHL7gDditIVoTx_Qjneum2sBWK7mKkFHy459inDKGlWNlZS0NUFaECAQUt3VkWHpZfHB7r9uJxoj_QKw-Uvv38JkHA8YuBl_Woz8D4y7S99RBHGTH9qbP9wNE9Rb1s9NaR3wrqkcDyBv0hbKYbb0VSJ7U5s-1Bpt6nZBFrRcrTQ1JUTWvs4i8TXM-Ldm7E7Hnf0KWM-CDSl0VdK2SaPHs3rEVh7UW3at9rjjWT5SmhhaMTqbMnOUq_2h_dKzyCHl5xVeYnmKpAYFzY9iixzMOdOJEChUA395hWeFhcMlE9JqQ7ZVS8EhFQot_niJaFkS_FANustiISj9iVKrZCB9zgsGQrkh_H1wRoL9cmvWAmo91RYqXQ0_VVsxRC3V3xmkvtl9dN9lDGf6CQOQ9JZaRt0SvMr_FJ-RwDhJqIIhJGxy0uME6QngXQxsrJt7Re_TG_Onr48KkjMsNZXWBWEh4Di-Ahj0B317HsDjrClforkblbi-ihugSyQH7yc-HXbJOyz5XkeLcuAiNqCEAaaL6rkK_Pqdc4C4fPq3bFXTxX3RLTSOF7tSrYTq2hSRlWQ7XK4tS2OoA0WRzZrHv34zsLiw04uwh5D5ZlqTjbDmMUbnylwYNsgXKlnilikVd_91RKhfNXWefjUxjoTN8dk5g4O4KXF5AW_Dh1vJ6x-Nr1LVwpyNWZTvZM1nJJb6cO4BhCslBOw6zAU5dGfkdeob8bwynwnug5eeqJ5Z52Iw04bp8XbHelBzSdOUIvQaIxukDaZ7Dg9DSwazSu_amotsrvqXkvzla_lS2skDxSLLbEQFqYx5zgbCRFnF5gTZ2HoLiIWIzshJxH8Itb8d4w6DVckd0r_yEvgOtBFC6XjFEh18Az90NyfPL7-XpL6jMh43n4qy9T6c0gOZYo6YPVQC6hMN2Mt06EKwZ5bPnExrW2Skf-pZl6WUhYbKtymMzGfOxzlAgzS2cVOQmVNCImyBm6FHoBlnyEBugH5lpCxvpWYI30ACMNtFaSsCRf4XcJtIiRaA3ZopZ22bnCfeKOHqsQw32VlEk3zHug_DYxAbc4iocR7zcyt_rcYtohYb8spBa4U9YzprS0vwcm8izGeEp1R8SH5XDMsALxFyQccUENExCI1sTDlKGQNBicozc-7gO8HxlJan7Njwzs1x_SRVhSe5w4RgCHbMrc1fTRXt9zkCHYktWuGF80RZy3T_Jc84tWr5wzonqaUSjRM4qFH7ZK218ejltZ7Q3fjk9W8vm-bMg48ArKsFE-GT_jV1Q86xSJC2NRxc-AASJLOrNQn7rYCxUIfkYSNvlBWiaLZ1nLty0VOZepNR-Ka9wVofooNOygisaO50ZYmnaTT0rDaPTT9rqvoONXwe0'></script></head><body>
+<header class="hb-header"><div class="inner">
+<a href="index.html" class="hb-logo"><img src="./img/Logo 1.png" alt="logo" width="38px" height="38px">
+<span><b>Health<span>Bridge</span></b><small>One ID. Better Care Everywhere</small></span></a>
+<nav class="hb-nav"><a href="#">Support</a><a href="#"><i class="fa-solid fa-globe"></i> EN ▾</a><a href="#">About</a></nav>
+</div></header>
+
+<div class="wrap">
+<form class="card-su" onsubmit="event.preventDefault();location.href=&#39;login.html&#39;">
+<div class="pre">Create your Account</div>
+<h1>Sign Up</h1>
+<p class="sub">Join healthBridge and take Control of your health</p>
+
+<div class="fld"><label>Full Name</label><input placeholder="Enter you full Name"/></div>
+<div class="fld"><label>E-mail</label><input type="email" placeholder="Enter your email"/></div>
+<div class="fld"><label>Phone Number</label><div class="phone"><select><option>+234</option><option>+1</option><option>+44</option></select><input placeholder="Enter your phone Number"/></div></div>
+
+<label>I am Signing up as</label>
+<div class="roles">
+<div class="role active" onclick="this.parentNode.querySelectorAll(&#39;.role&#39;).forEach(r=&gt;r.classList.remove(&#39;active&#39;));this.classList.add(&#39;active&#39;)"><i class="fa-solid fa-bed-pulse"></i> Patient</div>
+<div class="role" onclick="this.parentNode.querySelectorAll(&#39;.role&#39;).forEach(r=&gt;r.classList.remove(&#39;active&#39;));this.classList.add(&#39;active&#39;)"><i class="fa-solid fa-hospital"></i> Facilities</div>
+<div class="role" onclick="this.parentNode.querySelectorAll(&#39;.role&#39;).forEach(r=&gt;r.classList.remove(&#39;active&#39;));this.classList.add(&#39;active&#39;)"><i class="fa-solid fa-user-nurse"></i> Caregiver</div>
+</div>
+
+<div class="fld"><label>Password</label><div class="input-eye"><input id="p1" type="password" placeholder="Create a Password"/><i class="fa-regular fa-eye-slash" onclick="var p=document.getElementById(&#39;p1&#39;);p.type=p.type===&#39;password&#39;?&#39;text&#39;:&#39;password&#39;"></i></div></div>
+<div class="fld"><label>Confirm Password</label><div class="input-eye"><input id="p2" type="password" placeholder="Confirm your Password"/><i class="fa-regular fa-eye-slash" onclick="var p=document.getElementById(&#39;p2&#39;);p.type=p.type===&#39;password&#39;?&#39;text&#39;:&#39;password&#39;"></i></div></div>
+
+<label class="terms"><input type="checkbox"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+
+<button class="btn-pri" type="submit">Sign Up</button>
+<div class="alr">Already have an account? <a href="login.html">Login</a></div>
+</form>
+<div class="legal"><a href="#">Privacy Policy</a><span>|</span><a href="#">Term of Service</a></div>
+</div>
+
+<footer class="hb-footer"><div class="grid">
+<div class="brand"><div class=""><i><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></i></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+</body></html>

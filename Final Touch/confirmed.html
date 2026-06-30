@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointment - HealthBridge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e8eef5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #d0d8e8;
+            border-radius: 24px;
+            font-size: 14px;
+            background-color: #f5f7fa;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .support-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .profile-role {
+            color: #999;
+            font-size: 11px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page Title */
+        .page-title {
+            margin-bottom: 32px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 12px;
+        }
+
+        .page-title p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        /* Status Section */
+        .status-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f5f7fa;
+            border: 2px solid #4a90e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .status-content h3 {
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .status-content p {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-content p.confirmed {
+            color: #2ecc71;
+        }
+
+        .status-content p.id {
+            color: #4a90e2;
+        }
+
+        /* Confirmation Badge */
+        .confirmation-badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #e8f8f5;
+            border: 2px solid #2ecc71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 24px;
+        }
+
+        /* Card */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #333;
+        }
+
+        .card-title-icon {
+            font-size: 20px;
+        }
+
+        /* Doctor Card */
+        .doctor-card {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e8eef5;
+        }
+
+        .doctor-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            flex-shrink: 0;
+        }
+
+        .doctor-info {
+            flex: 1;
+        }
+
+        .doctor-name {
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .doctor-specialty {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .doctor-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .doctor-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .doctor-detail-icon {
+            font-size: 16px;
+            color: #4a90e2;
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-icon {
+            font-size: 18px;
+            color: #4a90e2;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background-color: #e8f8f5;
+            border-left: 4px solid #2ecc71;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .alert-icon {
+            font-size: 20px;
+            color: #2ecc71;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #2ecc71;
+            margin-bottom: 4px;
+        }
+
+        .alert-text {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Notification Options */
+        .notification-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .notification-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            padding: 16px;
+            border: 1px solid #e8eef5;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .notification-option:hover {
+            border-color: #4a90e2;
+            background-color: #f9fbff;
+        }
+
+        .notification-option-icon {
+            font-size: 24px;
+        }
+
+        .notification-option-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notification-option-desc {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .notification-option-badge {
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            color: white;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4a90e2;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .header-left {
+                gap: 12px;
+                width: 100%;
+                order: 1;
+            }
+
+            .search-box {
+                max-width: 100%;
+                order: 3;
+                width: 100%;
+            }
+
+            .header-right {
+                gap: 16px;
+                order: 2;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+
+            .doctor-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notification-options {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 12px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+
+            .search-box input {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .header-right {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 16px 12px;
+            }
+
+            .page-title h1 {
+                font-size: 24px;
+            }
+
+            .page-title p {
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 16px 12px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .doctor-avatar {
+                width: 80px;
+                height: 80px;
+            }
+
+            .doctor-name {
+                font-size: 16px;
+            }
+
+            .status-section {
+                grid-template-columns: 1fr;
+            }
+
+            .status-item {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <a href="#" class="logo">
+                <div class="logo-icon">⊕</div>
+                <div>
+                    <div style="font-size: 14px; line-height: 1;">HealthBridge</div>
+                    <div style="font-size: 10px; color: #999; line-height: 1;">One ID. Better Care Everywhere</div>
+                </div>
+            </a>
+            <div class="search-box">
+                <input type="text" placeholder="Search anything...">
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="#" class="support-link">Support</a>
+            <div class="language-selector">
+                <span>🌐</span>
+                <span>EN</span>
+                <span>▼</span>
+            </div>
+            <div class="notification-bell">
+                🔔
+                <div class="notification-badge">1</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-avatar">OJ</div>
+                <div class="profile-info">
+                    <div class="profile-name">Olivia Johnson</div>
+                    <div class="profile-role">Patient</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>My Appointment</h1>
+            <p>Your appointment has been successfully booked.</p>
+            <p>We have sent the details to your email and phone number.</p>
+        </div>
+
+        <!-- Status Section -->
+        <div class="status-section">
+            <div class="status-item">
+                <div class="status-icon">📅</div>
+                <div class="status-content">
+                    <h3>Appointment ID</h3>
+                    <p class="id">HB-250715-8942</p>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-icon">✓</div>
+                <div class="status-content">
+                    <h3>Booking Status</h3>
+                    <p class="confirmed">Confirmed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Details Card -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon">📅</div>
+                Appointment Details
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-avatar">im</div>
+                <div class="doctor-info">
+                    <div class="doctor-name">Dr. Adebayo Josphine</div>
+                    <div class="doctor-specialty">Cardiologist</div>
+                    <div class="doctor-details">
+                        <div class="doctor-detail">
+                            <span class="doctor-detail-icon">🎓</span>
+                            <span>MBBS, MD (Cardiology)</span>
+                        </div>
+                        <div class="doctor-detail">
+                            <span class="doctor-detail-icon">🏥</span>
+                            <span>Osogbo Specialist Hospital</span>
+                        </div>
+                        <div class="doctor-detail">
+                            <span class="doctor-detail-icon">📍</span>
+                            <span>Ayetoro Road, Osogbo, Osun State</span>
+                        </div>
+                        <div class="doctor-detail">
+                            <span class="doctor-detail-icon">📞</span>
+                            <span>08138877779</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Date</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">📅</span>
+                        <span>15 July 2026, Monday</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Time</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">🕐</span>
+                        <span>11:30 AM</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Consultation Type</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">🏥</span>
+                        <span>In-Person Visit</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Reason for Visit</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">💬</span>
+                        <span>Regular heart check-up</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Consultation Fee</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">💰</span>
+                        <span>5,000</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Payment Method</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">💳</span>
+                        <span>Paid Online</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Appointment ID</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">#</span>
+                        <span>HB-250715-8942</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Booked On</span>
+                    <div class="detail-value">
+                        <span class="detail-icon">📅</span>
+                        <span>08 July 2026, 09:15 AM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Banner -->
+            <div class="alert-banner" style="margin-top: 32px;">
+                <div class="alert-icon">🛡️</div>
+                <div class="alert-content">
+                    <div class="alert-title">Please arrive 15 minutes before your scheduled time.</div>
+                    <div class="alert-text">Bring a valid ID card any previous medical reports.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stay Updated Card -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon">🔔</div>
+                Stay Updated
+            </div>
+            <p style="font-size: 14px; color: #666; margin-bottom: 24px;">Get appointment updates, reminders and important alerts.</p>
+
+            <div class="notification-options">
+                <div class="notification-option">
+                    <div class="notification-option-icon">💬</div>
+                    <div class="notification-option-title">SMS</div>
+                    <div class="notification-option-desc">1 day and 2 hours before</div>
+                    <div class="notification-option-badge">✓</div>
+                </div>
+                <div class="notification-option">
+                    <div class="notification-option-icon">✉️</div>
+                    <div class="notification-option-title">Email</div>
+                    <div class="notification-option-desc">1 day before</div>
+                    <div class="notification-option-badge">✓</div>
+                </div>
+                <div class="notification-option">
+                    <div class="notification-option-icon">📱</div>
+                    <div class="notification-option-title">In-App</div>
+                    <div class="notification-option-desc">2 hours before</div>
+                    <div class="notification-option-badge">✓</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <button class="btn btn-primary" style="margin-top: 32px;">
+            <span>←</span>
+            Back
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">⊕</div>
+                </div>
+                <div class="footer-desc">One health identify, easier access to healthcare across nigeria</div>
+                <div class="social-links">
+                    <a href="#">📷</a>
+                    <a href="#">💼</a>
+                    <a href="#">▶️</a>
+                    <a href="#">𝕏</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Home</h3>
+                <ul>
+                    <li><a href="#">Register Patient</a></li>
+                    <li><a href="#">Register Facility</a></li>
+                    <li><a href="#">Book Appointment</a></li>
+                    <li><a href="#">Find Hospital</a></li>
+                    <li><a href="#">Access Profile</a></li>
+                    <li><a href="#">Admin Dashboard</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Find</h3>
+                <ul>
+                    <li><a href="#">First Aid</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Diseases List</a></li>
+                    <li><a href="#">Health Tips & Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Profile Settings</a></li>
+                    <li><a href="#">Doctors</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.body.style.animation = 'fadeInUp 0.6s ease-out';
+        });
+
+        // Button hover effects
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+            btn.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mousedown', (e) => {
+                e.target.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+        });
+
+        // Card hover effects
+        const cards = document.querySelectorAll('.notification-option');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

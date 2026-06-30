@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - HealthBridge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e8eef5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #d0d8e8;
+            border-radius: 24px;
+            font-size: 14px;
+            background-color: #f5f7fa;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .support-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .profile-role {
+            color: #999;
+            font-size: 11px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Success Header */
+        .success-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #2ecc71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            flex-shrink: 0;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-content h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 8px;
+        }
+
+        .success-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .success-email {
+            font-size: 14px;
+            color: #4a90e2;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #4a90e2;
+            flex-shrink: 0;
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: calc(100% - 60px);
+            height: 2px;
+            background-color: #d0d8e8;
+            z-index: 0;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            background-color: #4a90e2;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Card */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        /* Success Banner */
+        .success-banner {
+            background-color: #e8f8f5;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .success-banner-icon {
+            font-size: 20px;
+            color: #2ecc71;
+            flex-shrink: 0;
+        }
+
+        .success-banner-content {
+            flex: 1;
+        }
+
+        .success-banner-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #2ecc71;
+        }
+
+        .success-banner-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .success-badge {
+            background-color: #e8f8f5;
+            border: 1px solid #c8e6c9;
+            color: #2ecc71;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Action Cards */
+        .action-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .action-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid #e8eef5;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            border-color: #4a90e2;
+            background-color: #f9fbff;
+            transform: translateX(4px);
+        }
+
+        .action-card-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .action-card-content {
+            flex: 1;
+        }
+
+        .action-card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .action-card-desc {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .action-card-arrow {
+            font-size: 20px;
+            color: #4a90e2;
+        }
+
+        /* App Download Section */
+        .app-download {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid #e8eef5;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .app-download-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .app-download-content {
+            flex: 1;
+        }
+
+        .app-download-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .app-download-desc {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .app-btn {
+            padding: 8px 16px;
+            border: 1px solid #4a90e2;
+            background-color: white;
+            color: #4a90e2;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .app-btn:hover {
+            background-color: #f9fbff;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            color: white;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4a90e2;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stepper {
+                gap: 12px;
+            }
+
+            .step-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .features {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .header-left {
+                gap: 12px;
+                width: 100%;
+                order: 1;
+            }
+
+            .search-box {
+                max-width: 100%;
+                order: 3;
+                width: 100%;
+            }
+
+            .header-right {
+                gap: 16px;
+                order: 2;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .success-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .success-content h1 {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+
+            .stepper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .features {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-download {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .app-buttons {
+                width: 100%;
+            }
+
+            .app-btn {
+                flex: 1;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 12px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+
+            .search-box input {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .header-right {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 16px 12px;
+            }
+
+            .success-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 44px;
+            }
+
+            .success-content h1 {
+                font-size: 24px;
+            }
+
+            .success-content p {
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 16px 12px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .step-circle {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .step-label {
+                font-size: 12px;
+            }
+
+            .action-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-card-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <a href="#" class="logo">
+                <div class="logo-icon">⊕</div>
+                <div>
+                    <div style="font-size: 14px; line-height: 1;">HealthBridge</div>
+                    <div style="font-size: 10px; color: #999; line-height: 1;">One ID. Better Care Everywhere</div>
+                </div>
+            </a>
+            <div class="search-box">
+                <input type="text" placeholder="Search anything...">
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="#" class="support-link">Support</a>
+            <div class="language-selector">
+                <span>🌐</span>
+                <span>EN</span>
+                <span>▼</span>
+            </div>
+            <div class="notification-bell">
+                🔔
+                <div class="notification-badge">1</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-avatar">OJ</div>
+                <div class="profile-info">
+                    <div class="profile-name">Olivia Johnson</div>
+                    <div class="profile-role">Patient</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Success Header -->
+        <div class="success-header">
+            <div class="success-icon">✓</div>
+            <div class="success-content">
+                <h1>Payment Successful!</h1>
+                <p>Your appointment is confirmed.</p>
+                <p class="success-email">We've sent the confirmation to <strong>adeyinka@gmail.com</strong></p>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <span>Secured & Encrypted</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📅</div>
+                <span>Instant Confirmation</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <span>Appointment Reminder</span>
+            </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper">
+            <div class="step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Choose Doctor</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Appointment Details</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+
+        <!-- Payment Details Card -->
+        <div class="card">
+            <div class="card-title">1. Payment Details</div>
+
+            <div class="success-banner">
+                <div class="success-banner-icon">✓</div>
+                <div class="success-banner-content">
+                    <div class="success-banner-title">Payment Completed Successfully</div>
+                    <div class="success-banner-text">Transaction ID: HTB-20260715-892345</div>
+                </div>
+                <div class="success-badge">Paid</div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Payment Method</span>
+                    <span class="detail-value">••••3456</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Transaction Date</span>
+                    <span class="detail-value">15 June 2026, 10:32AM</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Consultation Fee</span>
+                    <span class="detail-value">5,000</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Service Fee</span>
+                    <span class="detail-value">0</span>
+                </div>
+            </div>
+
+            <div style="padding-top: 24px; border-top: 1px solid #e8eef5;">
+                <div class="detail-item">
+                    <span class="detail-label">Total Amount Paid</span>
+                    <span class="detail-value" style="color: #4a90e2; font-size: 18px;">5,000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's Next Card -->
+        <div class="card">
+            <div class="card-title">2. What's Next?</div>
+
+            <div class="action-cards">
+                <div class="action-card">
+                    <div class="action-card-icon">📅</div>
+                    <div class="action-card-content">
+                        <div class="action-card-title">Add to Calendar</div>
+                    </div>
+                    <div class="action-card-arrow">→</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-icon">🔔</div>
+                    <div class="action-card-content">
+                        <div class="action-card-title">Set Reminder</div>
+                        <div class="action-card-desc">We'll remind you before your appointment</div>
+                    </div>
+                    <div class="action-card-arrow">→</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-icon">📋</div>
+                    <div class="action-card-content">
+                        <div class="action-card-title">See your appointment details</div>
+                    </div>
+                    <div class="action-card-arrow">→</div>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-card-icon">📱</div>
+                    <div class="action-card-content">
+                        <div class="action-card-title">Manage your health on the go!</div>
+                        <div class="action-card-desc">Download the HealthBridge app to access your appointments, records and more.</div>
+                        <div class="app-buttons">
+                            <button class="app-btn">Download on App Store</button>
+                            <button class="app-btn">Download on Google Play</button>
+                        </div>
+                    </div>
+                    <div class="action-card-arrow">→</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Go to Appointment Button -->
+        <button class="btn btn-primary" style="margin-top: 32px;">
+            Go to My Appointment
+            <span>→</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">⊕</div>
+                </div>
+                <div class="footer-desc">One health identify, easier access to healthcare across nigeria</div>
+                <div class="social-links">
+                    <a href="#">📷</a>
+                    <a href="#">💼</a>
+                    <a href="#">▶️</a>
+                    <a href="#">𝕏</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Home</h3>
+                <ul>
+                    <li><a href="#">Register Patient</a></li>
+                    <li><a href="#">Register Facility</a></li>
+                    <li><a href="#">Book Appointment</a></li>
+                    <li><a href="#">Find Hospital</a></li>
+                    <li><a href="#">Access Profile</a></li>
+                    <li><a href="#">Admin Dashboard</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Find</h3>
+                <ul>
+                    <li><a href="#">First Aid</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Diseases List</a></li>
+                    <li><a href="#">Health Tips & Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Profile Settings</a></li>
+                    <li><a href="#">Doctors</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.body.style.animation = 'fadeInUp 0.6s ease-out';
+        });
+
+        // Button hover effects
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+            btn.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mousedown', (e) => {
+                e.target.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+        });
+
+        // Card hover effects
+        const cards = document.querySelectorAll('.action-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+            });
+            card.addEventListener('mouseleave', (e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+            });
+        });
+
+        // App button interactions
+        const appButtons = document.querySelectorAll('.app-btn');
+        appButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

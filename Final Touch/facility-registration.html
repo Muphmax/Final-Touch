@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Facility Registration • HealthBridge</title>
+<!-- IMAGE REFERENCE: Facility Registration.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#1E5BD6;--ink:#0b1220;--muted:#6b7280;--ring:#e5e7eb;--soft:#eef4ff}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;color:var(--ink);background:#fff}
+a{text-decoration:none;color:inherit}
+.hb-header{border-bottom:1px solid #eee}
+.hb-header .inner{max-width:1400px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.hb-logo{display:flex;align-items:center;gap:10px}
+.hb-logo .mark{width:36px;height:36px;border:2px solid #0e9f6e;border-radius:8px;display:grid;place-items:center;color:#0e9f6e}
+.hb-logo b{color:#0e9f6e;font-weight:800;font-size:20px}.hb-logo b span{color:var(--brand)}
+.hb-logo small{display:block;color:var(--brand);font-size:10px;font-weight:600}
+.search{flex:1;max-width:380px;background:#f3f4f6;border-radius:999px;padding:8px 16px;display:flex;align-items:center;gap:10px;color:#6b7280}
+.search input{border:0;background:transparent;outline:0;flex:1}
+.kbd{background:#fff;border:1px solid #d1d5db;border-radius:6px;padding:2px 6px;font-size:11px}
+.hb-nav{display:flex;gap:30px;font-weight:600}
+.layout{max-width:1400px;margin:0 auto;padding:30px 24px;display:grid;grid-template-columns:300px 1fr;gap:30px}
+.side h2{font-weight:800;margin:0 0 14px}
+.side p.lead{color:#111;font-size:14px;margin-bottom:30px}
+.steps{display:flex;flex-direction:column;gap:24px;position:relative}
+.steps:before{content:"";position:absolute;left:18px;top:30px;bottom:30px;width:1px;background:#e5e7eb}
+.step{display:flex;gap:14px;align-items:flex-start;position:relative;z-index:1}
+.step .n{width:36px;height:36px;border-radius:50%;background:#e5e7eb;color:#6b7280;display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.step.active .n{background:var(--brand);color:#fff}
+.step.active b{color:var(--brand)}
+.step b{display:block;font-weight:700}
+.step small{color:#6b7280;font-size:12px}
+.secure{margin-top:40px;background:#dbe7ff;color:var(--brand);border-radius:14px;padding:18px;text-align:center;font-size:13px}
+.secure b{display:block;margin-bottom:8px}
+.form-wrap{background:#e5e7eb;border-radius:14px;padding:24px}
+.back{display:inline-block;margin-bottom:16px;font-weight:600;color:#111}
+.form{background:#fff;border-radius:14px;padding:30px 36px}
+.form .step-lbl{color:var(--brand);font-weight:700;margin:0}
+.form h1{font-weight:800;font-size:30px;margin:4px 0 6px}
+.form .desc{margin:0 0 24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px 22px}
+label{font-weight:700;font-size:15px;margin-bottom:6px;display:block}
+label .req{color:#dc2626}
+.fld input,.fld select,.fld textarea{width:100%;background:#eef2f7;border:0;border-radius:999px;padding:12px 16px;outline:none;font-size:14px}
+.fld textarea{border-radius:14px;min-height:110px;padding:14px 16px;resize:vertical}
+.fld.full{grid-column:1/3}
+.upl{background:#eef2f7;border-radius:14px;padding:24px;text-align:center;color:var(--brand);font-weight:700;cursor:pointer}
+.upl small{display:block;color:#6b7280;font-weight:500;margin-top:8px}
+.actions{display:flex;justify-content:space-between;margin-top:24px;border-top:1px solid #eee;padding-top:20px}
+.btn-cancel{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:10px 26px;border-radius:8px;font-weight:600}
+.btn-save{background:var(--brand);color:#fff;border:0;padding:12px 28px;border-radius:8px;font-weight:600}
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0;margin-top:30px}
+.hb-footer .grid{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;margin-bottom:14px}.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.fld.full{grid-column:1}.hb-footer .grid{grid-template-columns:1fr 1fr}}
+</style><script type='text/javascript' nonce='xPsjkSdnYVWngWh9wvXrMQ==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/tRoyUTaANhMyrs9zCrj1ighGAZ0dnrUhYnUBILc32T07WBkws2ohdFYhsrAimcMSAkVWqerWjJNAmLo81aEfFPIwoxj_9tYVuqTThelNK3lvDJYYhl1qTeRdCSBt3hhd6ZuWJYhirNrYPH0Hc9YZWOD2lN619r7f9piwhJQoXbxmziLOOVwn4fgW7qWzBMEnk8vJuZawmceTLM5x5uc7sN8KorIDBsMOLsCgWfuhBIJpUNiMCWx713-6UvHm029xcoIYqn0jxbcOs4FGaM4-h6bCVU8ppEQ_EjhEEDI6Z-w3geTMfO7JNFy8H6MuQVWjeXNGv9NqkmwYvQSuVdyz9Lph8Gn4GHY4EqfFBLFKvcdiysEveGEId1cTRcIsBrRZcbUOAVJsmWCArJb1ajJQWLZOIevHljvhXWJ4sEGjksaA4B-7H-WHfrNjgi719Z7uyycuEZ-vx6Ben9uNvnOVvCBbJyo3dTYmAEWEEggoXEfdfVpgqqtPVOVfVcaXv2Bw10KaummNv6BtCjTx46j1K4mu6kps8_ux-JFV1ahlFkR1wyR0eTX_lDOlCnoXPZcAsZDn9WzR2n5ScnNNo_gOGg4jWVil1zt6K86v5-pjTdTReol9tvhGPZxFY0FJnDGBqVr-hXcP-qz2DEEI62KCRFvcsvewZZgHnUwzzPHLGnEEXO86dITHoXaCtFLjuJL2HuhBJ91tdXJp4DEBqP96J96unoNLFNOU-ljH9A29XCro5sF_vgtpkJpycC8Q67qLESaRZF91UKvo-7ZZTRQMAKg3stp-a2yYQcHBTHm-hJBWSlrasRkZFPQFIyI9xDhql6pttQovIl10s2vUPRxQmVJqdulVDYsi_K60dzWgZvzkL5PepwkopsSWDFTrBUI_rp-DIRPO9voWogzx_OzEHfl-wt8H39gM_qtz3ofYnz9-IB27iIL3VTzdCOKhC_2GmvcOmxDFZZ0h6BrYwE5yPrIlMRwqdyUdYkbZ5KrJRtMAoya9sRrc2kQADKL96sG0naRc6dxwecHeIneSlAJM_8tvcvhzVQLotjdXZb4jQmjRmlGrZ4i1Ya1QItd_vLdQrjPpa7B5Flu80RmwC_5r8gQFkeiabfq7SWt1QXsgzyEyupWK70CVOUe91yWDv4ha0kVKG20U-ZxDY8wAq6-4SnfibvA9T8egVhcc5Zbw4t1yaUSclYPxK8iVA-FWVaQlGXEG3S5qiBVhcg24kTGsoVYrWeYxrSX21bYhftiwUnXaNblBHIcFC4_twgI-A8GaFGMiy-HQwpnN_ZOZ3MkoxkQeVlqr69viCD5vwE1G8UHHezN9fS-IdBrj2Kh9GtXohfjuZBvHcVoOli7hrUzSei45DHea8LhfkFkmLCiR6tvV5ce6ErH-8St0_luRj6SPzGLrnCAY6xwqkWO78BdK708I_pv4MLOwTixQBO9PsMK0pZm8ukv53H9YXEYwrB4jeyjh1lBQNh-zLvnuTgM_s08GDUTG3uTWskaaINjG54yYWcXFT68qu4kykmNJ8HUh2kqNqrGXiV8-HPXFw0wESE-KBxjMe1lL9q_Y69fxV-QF915oBP4W13EBPoL8KWP-whTzorZ5OUyx4Kd4gLv3Ky-w8DcGzN9FDMPOyWCqCouv99-Vz07Mf_NfkSvWs18-PRaR-7b0vVpl5W8cT0wqPm_zIpUZh-PKCUiugtSOtPpMyRAr4R5orKUgNGrbk7n84FhYiu1D2Stkw2R9xg5T2_YOae2TFktG8SnO4nPsAWNze9Q8EfK2mzYA0io3r2ZWRuH9RhcXErM7nHoVzJ0morOAmZN0wAkRZ15vBa9l7AbV6gzR5NmJA4cmnHULo6W0fxL1m6y28f3Y5IRScyEG-AFFO0bGbQfoyDJTb8ES-PECO2OXu2bzgJjzyKcJY5tp8wzX-gntR05fQiN3esbD_WrskEBoHb0C2Vhy-7JvxRgovHsBCxnNt2PKT32marFwr7415SXx7T1S9m_2fbT5tkqRzTU5He9pRijb9Om6I00RiqjyaclSDIc'></script></head><body>
+<header class="hb-header"><div class="inner">
+<a href="index.html" class="hb-logo"><img src="./img/Logo 1.png" alt="logo" width="38px" height="38px">
+<span><b>Health<span>Bridge</span></b><small>One ID. Better Care Everywhere</small></span></a>
+<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Search hospitals"/><span class="kbd">⌘</span><span class="kbd">K</span></div>
+<nav class="hb-nav"><a href="#"><b>Support</b></a><a href="#"><i class="fa-solid fa-globe"></i> EN ▾</a><a href="#">About</a></nav>
+</div></header>
+
+<div class="layout">
+<aside class="side">
+<h2>Facility Registration</h2>
+<p class="lead">Let's get your healthcare facility registered on HealthBridge</p>
+<div class="steps">
+<div class="step active"><div class="n">1</div><div><b>Facility Information</b><small>Add basic details about your facility</small></div></div>
+<div class="step"><div class="n">2</div><div><b>Address &amp; Location</b><small>Provide your facility address</small></div></div>
+<div class="step"><div class="n">3</div><div><b>Contact Information</b><small>Add communication details</small></div></div>
+<div class="step"><div class="n">4</div><div><b>Facility Details</b><small>Select departments and services</small></div></div>
+<div class="step"><div class="n">5</div><div><b>Documents and Verification</b><small>Upload required documents</small></div></div>
+<div class="step"><div class="n">6</div><div><b>Review &amp; Submit</b><small>Verify and submit your registration</small></div></div>
+</div>
+<div class="secure"><b>Your information is secure</b>We use industry-standard encryption to protect your data and keep it confidential.</div>
+</aside>
+
+<div class="form-wrap">
+<a class="back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back</a>
+<form class="form" onsubmit="event.preventDefault();alert(&#39;Saved&#39;);">
+<p class="step-lbl">Step 1 of 6</p>
+<h1>Facility Information</h1>
+<p class="desc">Enter the basic details about your healthcare facility.</p>
+
+<div class="grid2">
+<div class="fld"><label>Facility Name <span class="req">*</span></label><input placeholder="  👤  Enter facility or hospital name"/></div>
+<div class="fld"><label>Facility Type <span class="req">*</span></label><select><option>  🏥  Select facility type</option><option>Hospital</option><option>Clinic</option></select></div>
+
+<div class="fld"><label>Registration Number / License No <span class="req">*</span></label><input placeholder="  📄  Enter registration or license number"/></div>
+<div class="fld"><label>Ownership Type <span class="req">*</span></label><select><option>  📅  Select ownership type</option><option>Private</option><option>Public</option></select></div>
+
+<div class="fld"><label>Number of Beds</label><input placeholder="  🛏  Enter total number of beds"/></div>
+<div class="fld"><label>Establishment Year</label><select><option>  📅  Select establishment year</option><option>2024</option><option>2023</option></select></div>
+
+<div class="fld full"><label>Facility Description</label><textarea placeholder="  ✏  Briefly describe your facility, services and specialities..."></textarea></div>
+
+<div class="fld"><label>Facility Logo</label><div class="upl"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Facility Logo<small>PNG, JPG or SVG (max. 2MB)</small></div></div>
+<div class="fld"><label>Facility Cover Image <span style="color:#6b7280;font-weight:500">(Optional)</span></label><div class="upl"><i class="fa-regular fa-image"></i> Upload Cover Image<small>PNG, JPG (max. 2MB)</small></div></div>
+
+<div class="fld"><label>Website <span style="color:#6b7280;font-weight:500">(Optional)</span></label><input placeholder="  🌐  https://yourfacility.com"/></div>
+<div class="fld"><label>Accreditation <span style="color:#6b7280;font-weight:500">(Optional)</span></label><select><option>  ✓  Select accreditation</option></select></div>
+</div>
+
+<div class="actions">
+<button type="button" class="btn-cancel">Cancel</button>
+<button type="submit" class="btn-save">Save &amp; Continue ➔</button>
+</div>
+</form>
+</div>
+</div>
+
+<footer class="hb-footer"><div class="grid">
+<div class="brand"><div class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+</body></html>

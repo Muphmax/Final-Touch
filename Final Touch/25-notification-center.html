@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Notification Center · HealthBridge</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+:root{--brand:#2563eb;--teal:#14b8a6;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--footerbg:#6f9fec}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;color:var(--ink)}a{text-decoration:none;color:inherit}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;gap:10px;align-items:flex-start;padding:6px 8px 18px}.brand .logo{width:42px;height:42px;border-radius:10px;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:22px}
+.brand h1{font-size:20px;margin:0;color:#3b82f6}.brand h1 span{color:var(--teal)}.brand small{display:block;color:#3b82f6;font-size:10px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;color:#334155}.nav-item:hover{background:#f1f5f9}.nav-item.active{background:#eff6ff;color:var(--brand);font-weight:600}
+.nav-item .badge{margin-left:auto;background:var(--brand);color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:11px}
+.help{margin-top:auto;background:#eff6ff;border-radius:14px;padding:14px}.help button{width:100%;background:#fff;border:1px solid var(--brand);color:var(--brand);padding:8px;border-radius:8px;font-weight:600}
+.theme{display:flex;align-items:center;gap:6px;color:var(--muted);padding:10px}
+.main-grid{display:grid;grid-template-columns:480px 1fr}
+.topbar{padding:14px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;grid-column:1/-1}
+.topbar h2{margin:0;font-weight:800}
+.npill{background:#dbeafe;color:var(--brand);padding:3px 10px;border-radius:10px;font-size:12px;font-weight:600}
+.act-icons{margin-left:auto;display:flex;gap:14px;font-size:18px;color:#475569}
+.left{padding:18px;border-right:1px solid var(--line);overflow:auto}
+.search{position:relative;margin-bottom:12px}.search input{width:100%;padding:11px 14px 11px 42px;border:1px solid var(--line);border-radius:10px;background:#f8fafc}.search i{position:absolute;left:14px;top:12px;color:#94a3b8}
+.fltr{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.fltr .c{padding:6px 12px;border-radius:14px;background:#f1f5f9;font-size:13px;cursor:pointer;color:#334155}
+.fltr .c.active{background:var(--brand);color:#fff}
+.fltr .c .n{margin-left:6px;background:#fff;color:#334155;padding:0 6px;border-radius:8px;font-size:11px;font-weight:600}
+.fltr .c.active .n{color:var(--brand)}
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.stats3 div{padding:14px;border:1px solid var(--line);border-radius:10px;text-align:center}
+.stats3 b{display:block;font-size:24px;font-weight:800}.stats3 .l{font-size:11px;color:var(--muted)}
+.notif{display:flex;gap:10px;padding:12px;border-radius:10px;border:1px solid transparent;margin-bottom:8px;cursor:pointer}
+.notif.selected{background:#eff6ff;border-color:#bfdbfe}
+.notif img,.notif .ic{width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;display:grid;place-items:center}
+.notif .tags{display:flex;gap:6px;align-items:center;font-size:11px;font-weight:600}
+.tag-blue{color:#2563eb}.tag-red{color:#dc2626}.tag-green{color:#16a34a;background:#dcfce7;padding:1px 8px;border-radius:8px}.tag-purple{color:#7c3aed}.tag-yellow{color:#d97706}.tag-pink{color:#db2777}.tag-orange{color:#ea580c;background:#ffedd5;padding:1px 8px;border-radius:8px}
+.notif .ttl{font-weight:700;font-size:14px;margin-top:2px}.notif .desc{font-size:13px;color:#475569;line-height:1.4;margin-top:2px}
+.notif .time{font-size:11px;color:var(--muted);margin-top:6px}
+.notif .udot{width:8px;height:8px;border-radius:50%;background:var(--brand);margin-left:auto;align-self:flex-start;margin-top:4px}
+.detail{padding:20px 24px;background:#f8fafc}
+.detail-head{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.detail-head img{width:50px;height:50px;border-radius:50%}
+.detail h3{font-size:22px;font-weight:800}
+.pinfo{background:#eff6ff;border-radius:10px;padding:14px;display:flex;gap:30px;margin-top:12px}
+.pinfo .row{display:flex;flex-direction:column}
+.info-grid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.info-grid .l{color:var(--muted);font-size:12px}
+.actions{display:flex;gap:10px;margin-top:18px}
+.btn-prim{flex:1;background:var(--brand);color:#fff;border:0;padding:13px;border-radius:10px;font-weight:600}
+.btn-out{flex:1;background:#fff;border:1px solid var(--line);padding:13px;border-radius:10px;font-weight:600}
+.footer{background:var(--footerbg);color:#fff;padding:40px 28px}
+.footer .row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:20px;max-width:1400px;margin:auto}
+.footer h6{font-weight:800;margin-bottom:14px;font-size:18px}.footer a,.footer p{display:block;color:#fff;margin-bottom:10px;font-size:15px}
+.footer .socials{display:flex;gap:10px;margin-top:14px;font-size:22px}
+.flogo{width:48px;height:48px;border-radius:10px;background:#fff;display:grid;place-items:center;color:var(--teal);font-size:24px;margin-bottom:14px}
+</style></head><body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo"><i class="bi bi-heart-pulse"></i></div><div><h1>Health<span>Bridge</span></h1><small>One ID. Better Care Everywhere</small></div></div>
+    <a class="nav-item"><i class="bi bi-grid"></i> Dashboard</a>
+    <a class="nav-item"><i class="bi bi-calendar2"></i> Appointments</a>
+    <a class="nav-item"><i class="bi bi-chat-dots"></i> Messages <span class="badge">8</span></a>
+    <a class="nav-item"><i class="bi bi-file-earmark-text"></i> Records</a>
+    <a class="nav-item"><i class="bi bi-capsule"></i> Prescriptions</a>
+    <a class="nav-item"><i class="bi bi-eyedropper"></i> Lab Results</a>
+    <a class="nav-item"><i class="bi bi-credit-card"></i> Billing</a>
+    <a class="nav-item"><i class="bi bi-gear"></i> Settings</a>
+    <div class="help"><b><i class="bi bi-question-circle"></i> Need Help?</b><p class="small text-muted my-2">Visit our Help Center or contact support.</p><button>Get Support</button></div>
+    <div class="theme"><i class="bi bi-sun"></i> Light <i class="bi bi-chevron-down ms-auto"></i></div>
+    <small class="text-muted px-2">© 2025 HealthBridge Inc.</small>
+  </aside>
+  <div>
+  <div class="main-grid">
+    <div class="topbar">
+      <h2>Notifications</h2><span class="npill">4 new</span>
+      <span class="text-primary fw-bold ms-3"><i class="bi bi-check2-all"></i> Mark all read</span>
+      <span class="text-muted ms-2"><i class="bi bi-funnel"></i></span>
+      <span class="text-muted ms-2"><i class="bi bi-arrow-clockwise"></i></span>
+      <div class="ms-auto d-flex gap-2">
+        <span class="badge bg-primary-subtle text-primary"><i class="bi bi-camera-video"></i> Teleconsult</span>
+        <span class="badge bg-danger-subtle text-danger">Urgent</span>
+      </div>
+      <div class="act-icons"><i class="bi bi-star-fill text-warning"></i><i class="bi bi-check2-all"></i><i class="bi bi-trash"></i></div>
+    </div>
+    <div class="left">
+      <div class="search"><i class="bi bi-search"></i><input placeholder="Search notifications..."></div>
+      <div class="fltr">
+        <span class="c active">All</span><span class="c">Unread <span class="n">4</span></span><span class="c">Appointments <span class="n">2</span></span><span class="c">Messages <span class="n">2</span></span><span class="c">Medical <span class="n">4</span></span><span class="c">System <span class="n">1</span></span>
+      </div>
+      <div class="stats3"><div><b class="text-primary">4</b><div class="l">Unread</div></div><div><b style="color:#f59e0b">1</b><div class="l">Starred</div></div><div><b class="text-danger">4</b><div class="l">High Priority</div></div></div>
+      <div id="nlist"></div>
+    </div>
+    <div class="detail">
+      <div class="detail-head"><img src="https://i.pravatar.cc/80?img=33"><div><b>Dr. Ayomide</b><div class="text-muted small">Cardiologist</div></div></div>
+      <div><span class="text-muted small"><i class="bi bi-clock"></i> Today, 10:14 AM</span> <span class="npill ms-2">Unread</span></div>
+      <h3 class="mt-2">Teleconsultation Starting Soon</h3>
+      <p>Your video consultation with Dr. Ayomide Caleb (Cardiologist) begins in 15 minutes. Please ensure your camera and microphone are working.</p>
+      <div class="pinfo"><div><b><span class="text-danger">●</span> Priority: High</b></div><div><i class="bi bi-clock"></i> Today, 10:14 AM</div></div>
+      <div class="info-grid">
+        <div><div class="l">Date & Time</div><b>Today, 10:30 AM</b></div>
+        <div><div class="l">Duration</div><b>30 minutes</b></div>
+        <div><div class="l">Specialist</div><b>Cardiology</b></div>
+        <div><div class="l">Platform</div><b>HealthBridge Video</b></div>
+      </div>
+      <div class="actions"><button class="btn-prim">Join Consultation →</button><button class="btn-out">Reschedule</button></div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="row">
+      <div><div class="flogo"><i class="bi bi-heart-pulse"></i></div><p>One health identify, easier access to healthcare across nigeria</p><div class="socials"><i class="bi bi-instagram"></i><i class="bi bi-linkedin"></i><i class="bi bi-youtube"></i><i class="bi bi-twitter-x"></i></div></div>
+      <div><h6>Home</h6><a>Register Patient</a><a>Register Facility</a><a>Book Appointment</a><a>Find Hospital</a><a>Access Profile</a><a>Admin Dashboard</a><a>Notification</a></div>
+      <div><h6>Find</h6><a>First Aid</a><a>Emergency</a><a>Diseases List</a><a>Health Tips & Wellness</a></div>
+      <div><h6>Resources</h6><a>Support</a><a>Profile Settings</a><a>Doctors</a></div>
+    </div>
+  </footer>
+  </div>
+</div>
+<script>
+const n=[
+{img:'https://i.pravatar.cc/80?img=33',tags:'<span class="tag-blue">Teleconsult</span> <span class="tag-red">● Urgent</span>',t:'Teleconsultation Starting Soon',d:'Your video consultation with Dr. Ayomide Caleb (Cardiologist) begins in 15 minutes. Please ensure your camera and microphone',ti:'10 min ago',sel:true,unread:true},
+{ic:'<i class="bi bi-eyedropper" style="color:#0d9488;background:#ccfbf1"></i>',tags:'<span class="tag-green">Lab Results</span> <span style="color:#16a34a">● New</span>',t:'Lab Results Ready',d:'Your Complete Blood Count (CBC) results from Jun 10 are now available. Dr. Wilson has reviewed them and left a note.',ti:'1 hr ago',unread:true},
+{img:'https://i.pravatar.cc/80?img=49',tags:'<span class="tag-blue">Message</span> <span style="color:#f59e0b">●</span>',t:'New Message from Dr. Sarah Chen',d:'Hi Amara, I\\'ve reviewed your recent vitals and everything looks good. Continue your current medication and book a follow-up in 2',ti:'2 hrs ago',unread:true},
+{img:'https://i.pravatar.cc/80?img=13',tags:'<span class="tag-purple">Appointment</span> <span style="color:#7c3aed">●</span>',t:'Appointment Confirmed',d:'Your appointment with Dr. Michael Adeyemi (Neurologist) on June 15, 2026 at 2:00 PM has been confirmed. Please arrive 10 minutes',ti:'3 hrs ago',unread:true},
+{ic:'<i class="bi bi-capsule" style="color:#d97706;background:#fef3c7"></i>',tags:'<span class="tag-yellow">Prescription</span> <span style="color:#d97706">●</span>',t:'Prescription Refill Reminder',d:'Your Cetirizine 10mg prescription is due for refill in 3 days. You have 6 tablets remaining. Tap to request a refill from your',ti:'5 hrs ago'},
+{ic:'<i class="bi bi-heart-pulse" style="color:#db2777;background:#fce7f3"></i>',tags:'<span class="tag-pink">Medical</span> <span class="tag-orange">Alert</span> <span style="color:#dc2626">●</span>',t:'Blood Pressure Alert',d:'Your last recorded blood pressure reading of 138/90 mmHg is slightly above the normal range. Dr. Wilson recommends',ti:'Yesterday'},
+];
+document.getElementById('nlist').innerHTML=n.map(x=>`
+<div class="notif ${x.sel?'selected':''}">
+  ${x.img?`<img src="${x.img}">`:`<div class="ic" style="font-size:20px">${x.ic}</div>`}
+  <div class="flex-grow-1"><div class="tags">${x.tags}</div><div class="ttl">${x.t}</div><div class="desc">${x.d}</div><div class="time">${x.ti}</div></div>
+  ${x.unread?'<div class="udot"></div>':''}
+</div>`).join('');
+</script>
+</body></html>

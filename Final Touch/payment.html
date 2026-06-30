@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Payment - HealthBridge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e8eef5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #d0d8e8;
+            border-radius: 24px;
+            font-size: 14px;
+            background-color: #f5f7fa;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .support-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .profile-role {
+            color: #999;
+            font-size: 11px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page Title */
+        .page-title {
+            margin-bottom: 40px;
+        }
+
+        .page-title p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #4a90e2;
+            flex-shrink: 0;
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: calc(100% - 60px);
+            height: 2px;
+            background-color: #d0d8e8;
+            z-index: 0;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            background-color: #d0d8e8;
+            color: #999;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle.completed {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .step-circle.active {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Form Section */
+        .form-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 40px;
+        }
+
+        .form-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        .payment-summary {
+            background-color: #f5f7fa;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e8eef5;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .summary-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .summary-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .summary-value.total {
+            color: #4a90e2;
+            font-size: 16px;
+        }
+
+        .doctor-card {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e8eef5;
+        }
+
+        .doctor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            flex-shrink: 0;
+        }
+
+        .doctor-info {
+            flex: 1;
+        }
+
+        .doctor-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .doctor-specialty {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .appointment-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-icon {
+            font-size: 18px;
+            color: #4a90e2;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid #d0d8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method.selected {
+            border-color: #4a90e2;
+            background-color: #f9fbff;
+        }
+
+        .payment-method input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 16px;
+        }
+
+        .payment-method-content {
+            flex: 1;
+        }
+
+        .payment-method-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .payment-method-desc {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .payment-method-icon {
+            font-size: 24px;
+            margin-left: auto;
+        }
+
+        /* Form Groups */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-input,
+        .form-select {
+            padding: 12px 16px;
+            border: 1px solid #d0d8e8;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #ccc;
+        }
+
+        .form-input.with-icon {
+            padding-right: 44px;
+            position: relative;
+        }
+
+        .form-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4a90e2;
+            font-size: 18px;
+        }
+
+        .form-group.with-icon {
+            position: relative;
+        }
+
+        /* Success Banner */
+        .success-banner {
+            background-color: #e8f8f5;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .success-banner-icon {
+            font-size: 20px;
+            color: #2ecc71;
+            flex-shrink: 0;
+        }
+
+        .success-banner-content {
+            flex: 1;
+        }
+
+        .success-banner-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #2ecc71;
+        }
+
+        .success-banner-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #4a90e2;
+            color: white;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4a90e2;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .appointment-info {
+                grid-template-columns: 1fr;
+            }
+
+            .stepper {
+                gap: 12px;
+            }
+
+            .step-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .features {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .header-left {
+                gap: 12px;
+                width: 100%;
+                order: 1;
+            }
+
+            .search-box {
+                max-width: 100%;
+                order: 3;
+                width: 100%;
+            }
+
+            .header-right {
+                gap: 16px;
+                order: 2;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .form-card {
+                padding: 24px 16px;
+            }
+
+            .stepper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .features {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .doctor-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 12px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+
+            .search-box input {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .header-right {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 16px 12px;
+            }
+
+            .form-card {
+                padding: 16px 12px;
+            }
+
+            .form-section-title {
+                font-size: 16px;
+            }
+
+            .form-row {
+                gap: 16px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .step-circle {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .step-label {
+                font-size: 12px;
+            }
+
+            .doctor-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .appointment-info {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <a href="#" class="logo">
+                <div class="logo-icon">⊕</div>
+                <div>
+                    <div style="font-size: 14px; line-height: 1;">HealthBridge</div>
+                    <div style="font-size: 10px; color: #999; line-height: 1;">One ID. Better Care Everywhere</div>
+                </div>
+            </a>
+            <div class="search-box">
+                <input type="text" placeholder="Search anything...">
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="#" class="support-link">Support</a>
+            <div class="language-selector">
+                <span>🌐</span>
+                <span>EN</span>
+                <span>▼</span>
+            </div>
+            <div class="notification-bell">
+                🔔
+                <div class="notification-badge">1</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-avatar">OJ</div>
+                <div class="profile-info">
+                    <div class="profile-name">Olivia Johnson</div>
+                    <div class="profile-role">Patient</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <p>Your appointment is almost confirmed.</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <span>Secure Payments</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📅</div>
+                <span>Encrypted & Safe</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <span>Trusted by 5,000 + Patients</span>
+            </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="stepper">
+            <div class="step">
+                <div class="step-circle completed">✓</div>
+                <div class="step-label">Choose Doctor</div>
+            </div>
+            <div class="step">
+                <div class="step-circle completed">✓</div>
+                <div class="step-label">Appointment Details</div>
+            </div>
+            <div class="step">
+                <div class="step-circle active">3</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-card">
+            <!-- Section 1: Payment Summary -->
+            <div class="form-section-title">1. Payment Summary</div>
+
+            <div class="doctor-card">
+                <div class="doctor-avatar"></div>
+                <div class="doctor-info">
+                    <div class="doctor-name">Dr. Adebayo Josphine</div>
+                    <div class="doctor-specialty">Cardiologist</div>
+                </div>
+                <div class="appointment-info">
+                    <div class="info-item">
+                        <div class="info-icon">📅</div>
+                        <div class="info-content">
+                            <div class="info-label">Date</div>
+                            <div class="info-value">15 July 2026, Monday</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕐</div>
+                        <div class="info-content">
+                            <div class="info-label">Time</div>
+                            <div class="info-value">11:30 AM</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏥</div>
+                        <div class="info-content">
+                            <div class="info-label">Visit Type</div>
+                            <div class="info-value">In-Person Visit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-summary">
+                <div class="summary-row">
+                    <span class="summary-label">Consultation Fee</span>
+                    <span class="summary-value">5,000</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Service Fee</span>
+                    <span class="summary-value">0</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Total Amount</span>
+                    <span class="summary-value total">5,000</span>
+                </div>
+            </div>
+
+            <!-- Section 2: Select Payment Method -->
+            <div class="form-section-title" style="margin-top: 40px;">2. Select Payment Method</div>
+
+            <div class="payment-methods">
+                <label class="payment-method selected">
+                    <input type="radio" name="payment" checked>
+                    <div class="payment-method-content">
+                        <div class="payment-method-title">Pay Online Now</div>
+                        <div class="payment-method-desc">Pay securely with card or bank</div>
+                    </div>
+                    <div class="payment-method-icon">💳🔴🟠</div>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment">
+                    <div class="payment-method-content">
+                        <div class="payment-method-title">Bank Transfer</div>
+                        <div class="payment-method-desc">Transfer directly from your bank</div>
+                    </div>
+                    <div class="payment-method-icon">🏦</div>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment">
+                    <div class="payment-method-content">
+                        <div class="payment-method-title">USSD Payment</div>
+                        <div class="payment-method-desc">Pay quickly using USSD</div>
+                    </div>
+                    <div class="payment-method-icon">📱</div>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment">
+                    <div class="payment-method-content">
+                        <div class="payment-method-title">Pay at Hospital</div>
+                        <div class="payment-method-desc">Pay during your visit</div>
+                    </div>
+                    <div class="payment-method-icon">🏥</div>
+                </label>
+            </div>
+
+            <!-- Section 3: Card Details -->
+            <div class="form-section-title" style="margin-top: 40px;">3. Card Details</div>
+
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label class="form-label">Card Number</label>
+                <div class="form-group with-icon">
+                    <input type="text" class="form-input" value="1234 5678 9012 3456">
+                    <div class="form-icon">💳</div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label class="form-label">Cardholder Name</label>
+                <input type="text" class="form-input" value="Adeyinka Yunus">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Expiry Date</label>
+                    <input type="text" class="form-input" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-input" placeholder="123">
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="saveCard" checked>
+                <label for="saveCard">Save card for faster payments</label>
+            </div>
+
+            <button class="btn btn-primary">
+                Pay 5,000 Securely
+                <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">⊕</div>
+                </div>
+                <div class="footer-desc">One health identify, easier access to healthcare across nigeria</div>
+                <div class="social-links">
+                    <a href="#">📷</a>
+                    <a href="#">💼</a>
+                    <a href="#">▶️</a>
+                    <a href="#">𝕏</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Home</h3>
+                <ul>
+                    <li><a href="#">Register Patient</a></li>
+                    <li><a href="#">Register Facility</a></li>
+                    <li><a href="#">Book Appointment</a></li>
+                    <li><a href="#">Find Hospital</a></li>
+                    <li><a href="#">Access Profile</a></li>
+                    <li><a href="#">Admin Dashboard</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Find</h3>
+                <ul>
+                    <li><a href="#">First Aid</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Diseases List</a></li>
+                    <li><a href="#">Health Tips & Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Profile Settings</a></li>
+                    <li><a href="#">Doctors</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.body.style.animation = 'fadeInUp 0.6s ease-out';
+        });
+
+        // Button hover effects
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+            btn.addEventListener('mouseleave', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mousedown', (e) => {
+                e.target.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', (e) => {
+                e.target.style.transform = 'scale(1.03)';
+            });
+        });
+
+        // Payment method selection
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                method.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Form input focus effects
+        const inputs = document.querySelectorAll('.form-input, .form-select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.style.borderColor = '#4a90e2';
+                e.target.style.boxShadow = '0 0 0 3px rgba(74, 144, 226, 0.1)';
+            });
+            input.addEventListener('blur', (e) => {
+                e.target.style.borderColor = '#d0d8e8';
+                e.target.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Doctor Profile • HealthBridge</title>
+<!-- IMAGE REFERENCE: DOCTOR PROFILE.png -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--brand:#3b7df0;--brand-dark:#1E5BD6}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;color:#0b1220;background:#fff}
+a{text-decoration:none;color:inherit}
+.top{display:flex;align-items:center;border-bottom:1px solid #eee;padding:0 0 0 0;height:80px}
+.side-rail{width:80px;background:var(--brand);height:80px;display:grid;place-items:center;color:#fff}
+.side-rail .lg{width:46px;height:46px;border:2px solid #fff;border-radius:10px;display:grid;place-items:center;font-size:20px;color:#fff;background:rgba(255,255,255,.15)}
+.top-row{flex:1;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:20px}
+.top-row h1{font-weight:800;font-size:24px;margin:0}
+.search{flex:1;max-width:520px;background:#f1f4f9;border-radius:999px;padding:10px 18px;display:flex;align-items:center;gap:10px;color:#6b7280}
+.search input{border:0;background:transparent;outline:0;flex:1}
+.top-right{display:flex;align-items:center;gap:18px}
+.top-right .ic{width:42px;height:42px;border-radius:50%;background:#e5e7eb;display:grid;place-items:center;position:relative}
+.top-right .ic .b{position:absolute;top:-4px;right:-4px;background:#dc2626;color:#fff;font-size:10px;border-radius:50%;width:18px;height:18px;display:grid;place-items:center}
+.top-right .ic.b2{background:var(--brand);color:#fff}
+.who b{display:block;font-weight:700}.who small{color:#6b7280}
+.body{display:grid;grid-template-columns:80px 1fr;min-height:calc(100vh - 80px - 200px)}
+.rail{background:var(--brand);display:flex;flex-direction:column;align-items:center;padding:30px 0;gap:30px;color:#fff;font-size:18px}
+.rail a{color:#fff;opacity:.85}
+.content{padding:30px}
+.row1{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.doc{background:var(--brand);color:#fff;border-radius:18px;padding:24px;display:grid;grid-template-columns:280px 1fr;gap:24px;box-shadow:0 12px 30px rgba(59,125,240,.25)}
+.doc img{width:280px;height:340px;object-fit:cover;border-radius:10px;background:#fff}
+.doc h2{margin:0;font-weight:800}
+.doc .sp{color:#fcd34d;font-weight:700;margin-bottom:14px}
+.doc p{font-size:15px;line-height:1.55}
+.cal{border:1px solid #e5e7eb;border-radius:18px;overflow:hidden}
+.cal .h{background:var(--brand);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;font-weight:700;font-size:18px}
+.cal .h button{background:transparent;color:#fff;border:0;font-size:18px}
+.cal table{width:100%;border-collapse:collapse}
+.cal th{padding:14px;color:#696f7c;font-weight:400;text-align:center;border-bottom:1px solid #eee}
+.cal td{padding:14px;text-align:center;font-weight:400}
+.cal td.mute{color:#cbd5e1}
+.cal td.sel{background:#dc2626;color:#fff;border-radius:999px;display:inline-block;width:36px;height:36px;line-height:8px}
+.cal td .pill{display:inline-block;background:#dc2626;color:#fff;border-radius:999px;width:36px;height:36px;line-height:36px}
+.row2{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:24px}
+.tblbox{border:1px solid #e5e7eb;border-radius:14px;overflow:hidden}
+.tblbox .h{background:var(--brand);color:#fff;padding:14px 22px;font-weight:700;font-size:18px}
+.tblbox table{width:100%;border-collapse:collapse;font-size:14px}
+.tblbox th,.tblbox td{padding:12px 16px;text-align:left}
+.tblbox tr:nth-child(even){background:#d1d5db}
+.tblbox .act{color:#16a34a;margin-right:6px;cursor:pointer}
+.tblbox .act.r{color:#dc2626}
+.cond{border:1px solid #e5e7eb;border-radius:14px;overflow:hidden}
+.cond .h{background:var(--brand);color:#fff;padding:14px 22px;font-weight:700;font-size:18px}
+.cond .it{padding:14px 22px;display:flex;align-items:center;gap:12px;font-weight:600}
+.cond .it i{color:#111}
+.hb-footer{background:#6B9BE8;color:#fff;padding:36px 0;margin-top:30px}
+.hb-footer .grid{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.hb-footer h5{font-weight:700;margin-bottom:14px}.hb-footer a{display:block;color:#fff;font-size:15px;margin-bottom:10px}
+.hb-footer .brand .mark{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;margin-bottom:14px}
+.hb-footer .socials{display:flex;gap:10px;margin-top:14px}.hb-footer .socials a{background:rgba(255,255,255,.25);width:30px;height:30px;border-radius:6px;display:grid;place-items:center;margin:0}
+@media(max-width:900px){.row1,.row2{grid-template-columns:1fr}.doc{grid-template-columns:1fr}.doc img{width:100%;height:auto}.hb-footer .grid{grid-template-columns:1fr 1fr}}
+</style><script type='text/javascript' nonce='njj6VC6M9TouchXsU5dg3Q==' src='https://id-preview--f2ab7787-e922-44d1-9c34-285039b29001.lovable.app/F-1arL7OHMEa9991JxrYySr4T-UKVsKOBw7ybiftNy0WmHs6TDoAO5_XD1Uc4ZF3Bf0v2JhNVV1bZbsj1RoQfdhskil7-SEF3wpxoamL1bcgVP9SaQmciNbZwpjybDMmQiDhAspRwJgERhrLi9Kc6aCFwnFVEvGZC_QuFG0Zf37j2sng5DXli06vju2fu5TmFtoSl0-Q_j6F882ggBNXv_YKv600KW0zzrt_aQhr1dSJocMasDMl3zm4D2H2LXtR_9WeZ3QlYqpKK_6Qy199KzfYlVO_lQargpUE8l97dFCulB8XlcNchzAU3qqNI4EDySx20GQNQ3TIDFerH29dz7SSQVvG5ekf9sbRDeJo0FamDzxV-LRuIqoV381tIq5PIEYs_owyXnMQTI2nKZDEGu_iIaNc1dqiz3HzayITYv26KfSgqXQ02Pwkf091qwLz_QpA8oU5XZN6yfF3IXeWKq3wHpQPF1zzDVx7DJfz7G_3s9h2bsrpXFefkLXNoneMu_D86Dz9rrZFNahjM9y2KpY5XHguGoQQ6mv4Oo_oKUfiS3YcqOFOnDy-C6CLG9NxpIZNtpNHaHVN9GwOpFCwNbVMdSrMPuAQ8MSr9USfn7nBzDQiJngd6NaHfNk8CeGSTs26s55YnK0ZDYa0TiC1Awxwi1Erpwci3LdCvSgw9OFWRUNp0-ssHdoz77DRyndbMXBF-9TSslTD6rFcPqjQm0qfwjn-sf6sB2qTh3nGUVRvdsBQUp0_hX1RekV0A5P_aBeg3H2jmE8OdFghTgi_q8856x6oNRhDmB5t8ezZffvyLT8iub2S4rBNGf5jKvOCaV3EkBtTm6VNEr9twtQLvBCTDKLUNJnPQmA9V8oXrOnDvoEjRlDfkIxx24y8LTZc4p3D-J3HUw9pdDJ0An7_HLPIPGe4qdS23CatEGTHhWE4LOb_WJIZXmqHUMw-Ym4qKX0-NcH-BGu2ett4HL6kibkZCq9pA61iS4_JcbDf7eGi1cb7ffDWCYfP4wv_TLeAdR2pyZj3G_E3gT3InKLRXtqogNSegZiJ5Hls8M1D7TbzaTmElgYT_jItqIg4ImSVl0EYpGeDTmClPMwq7r-U9kVITVx36gbfrnJeWcdeyBaLpqB3uVTdzM_47U9V7oG6zdYer0ULzvW5Y4YSVVKU5SPdfxctzFcHGXlMt81L3EOSF7UdG8MIel5T6tyDpPwy6bj6Zbime7LVHFbbq-eRtwPTn_uM74erexgxoIxWr1Dno8raEFGOn_B-KAmV7ElZqRW86s8oSUXzW0jK6S3bVh1jAqV9P__YNQYlvxeclxom0arlZ6PoU5P1OML3Nm7TgrUUrywgBK1DldP7eZilyLCE6nkjDBKwR2yDWlj-EDrE_F3b01G7DHna28045ahGjDgIl4duvIoShvmhY1eVsnkG49euybwoGYVek86JGkFSMYhlYqZocWI636pcrB0Z60xF7yr0rEvzY5SaHgjGUqkILXtqo9VDtf3J1C76pnL2QI5DRIAxs4huL6PPmxhSYBPIYfCts2mph_D6den8fwsEk79-L3V7-QeR7to83PYJLWItYvWt9rsNIpWsS5jPDClAOxE_W65hFHcX5Yr8KQilu_XbTdGvbaqhsJN-rUKmRHRFSdBLFohFv-TslkMWHLS2zkKsJgcOs4sFtNJSK4jY6p2gGSL7cnPVYe5GsBKwT86DEFtdc3DhyHqaQWllFJcHA8mz737_dLlnOqhA9R6uNd_2nl2k0djk9LtgyzWkeUIwrw4Hcj1o8YexCyTzO2w32JSMuA0v5qSyT3_JMeGmi_TdRyFAZrEM4W14aW_DZVaS4Ww0ajy_K7QaI69gjBA0cnXYVwHYGUcsfhMi6-Qy71GocAp_32IUWzpxG39Qzk7wz6M71_amcVMYFznXXuOeq8WZ3BeHvJVeDwBDWCOfoXYeK8nAUSH0kyNvsXrCu2BLj1KDO5nmyTyOalm2OubsITTFdrIKz3Y41JYNamlGXBwi5omt_goGTlazS79KJw'></script></head><body>
+<div class="top">
+<div class="side-rail"><div class=""><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></div></div>
+<div class="top-row">
+<h1>Doctor Profile</h1>
+<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Search"/></div>
+<div class="top-right">
+<div class="ic"><i class="fa-regular fa-bell"></i><span class="b">3</span></div>
+<div class="ic b2"><i class="fa-regular fa-envelope"></i></div>
+<div class="who"><b>Funmi .A.</b><small>Admin</small></div>
+</div>
+</div>
+</div>
+
+<div class="body">
+<aside class="rail">
+<a href="#"><i class="fa-regular fa-calendar"></i></a>
+<a href="#"><i class="fa-regular fa-clipboard"></i></a>
+<a href="#"><i class="fa-solid fa-user-doctor"></i></a>
+<a href="#"><i class="fa-regular fa-file-lines"></i></a>
+<a href="#"><i class="fa-solid fa-link"></i></a>
+<a href="#"><i class="fa-regular fa-comment"></i></a>
+<a href="#"><i class="fa-regular fa-credit-card"></i></a>
+<a href="#"><i class="fa-solid fa-wave-square"></i></a>
+<a href="#"><i class="fa-regular fa-clipboard"></i></a>
+<a href="#"><i class="fa-solid fa-gear"></i></a>
+</aside>
+
+<main class="content">
+<div class="row1">
+<div class="doc">
+<img src="./img/1doc.png" alt="doctor"/>
+<div>
+<h2>Dr. Peter Oluwole</h2>
+<div class="sp">Specialist Pediatrician</div>
+<p>Dr. Peter Oluwole is a board-certified Pediatrician at Lagos University Teaching Hospital. He completed his training at Lousiana State University School of Medicine in New Orleans. He is a compassionate and dedicated pediatrician with extensive experience in providing comprehensive healthcare for infants, children, and adolescents. Committed to promoting healthy growth and development.</p>
+</div>
+</div>
+<div class="cal">
+<div class="h"><button>&lt;</button>JUNE 2026<button>&gt;</button></div>
+<table id="cal"><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody></tbody></table>
+</div>
+</div>
+
+<div class="row2">
+<div class="tblbox">
+<div class="h">Patient Latest Data</div>
+<table><thead><tr><th><input type="checkbox"></th><th>No</th><th>Date</th><th>Name</th><th>Age</th><th>State</th><th>Gender</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>Bayo Adetola</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>Grace Olaoluwa</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>Ige Adubi .</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>Wale Johnson</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>John Ross .</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+<tr><td><input type="checkbox"/></td><td>01</td><td>08/06/2026</td><td>Ayo Shobola</td><td>42</td><td>Osun</td><td>Female</td><td><i class="fa-regular fa-pen-to-square act"></i><i class="fa-regular fa-trash-can act r"></i></td></tr>
+</tbody></table>
+</div>
+<div class="cond">
+<div class="h">Conditions Treated</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Pediatric Nutrition Disorders</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Childhood Allergies &amp; Asthma</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Infectious diseases in Children</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Immunization &amp; Prevention Care</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Digestive &amp; Gastrointestinal Issues</div>
+<div class="it"><i class="fa-solid fa-arrow-right-long"></i> Pediatric Diabetes &amp; Endocrine Disorders</div>
+</div>
+</div>
+</main>
+</div>
+
+<footer class="hb-footer"><div class="grid">
+<div class="brand"><div class=""><i><img src="./img/Logo 1.png" alt="logo" width="50px" height="50px"></i></div>
+<p>One health identify, easier access to healthcare across nigeria</p>
+<div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div></div>
+<div><h5><a href="index.html">Home</a></h5><a href="signup.html">Register Patient</a><a href="facility-registration.html">Register Facility</a><a href="#">Book Appointment</a><a href="find-facility.html">Find Hospital</a><a href="dashboard.html">Access Profile</a><a href="doctor-profile.html">Admin Dashboard</a><a href="#">Notification</a></div>
+<div><h5>Find</h5><a href="#">First Aid</a><a href="#">Emergency</a><a href="#">Diseases List</a><a href="#">Health Tips &amp; Wellness</a></div>
+<div><h5>Resources</h5><a href="#">Support</a><a href="#">Profile Settings</a><a href="#">Doctors</a></div>
+</div></footer>
+
+<script>
+// Build June 2026 calendar; June 1, 2026 is Monday
+(function(){
+  const tb=document.querySelector('#cal tbody');
+  const pre=[27,28,29,30,31];
+  const days=[];
+  for(let i=0;i<pre.length;i++)days.push({d:pre[i],mute:true});
+  for(let i=1;i<=30;i++)days.push({d:i,mute:false,sel:i===18});
+  const post=[2,3,4,5,6];
+  for(let i=0;i<post.length;i++)days.push({d:post[i],mute:true});
+  // First row should start Sun: June 2026 — May 31 is Sun? Actually we want grid starting Sunday.
+  // Adjust: prepend so 27 appears under Sun.
+  let html='',i=0;
+  while(i<days.length){
+    html+='<tr>';
+    for(let c=0;c<7;c++){
+      const x=days[i++];
+      if(!x){html+='<td></td>';continue}
+      html+='<td class="'+(x.mute?'mute':'')+'">'+(x.sel?'<span class="pill">'+x.d+'</span>':x.d)+'</td>';
+    }
+    html+='</tr>';
+  }
+  tb.innerHTML=html;
+})();
+</script>
+</body></html>
